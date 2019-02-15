@@ -2,15 +2,26 @@
   <v-container>
     <v-layout pa-3 mb-2>
       <v-flex>
-        <v-flex d-inline-flex ma-3>
+        <v-flex ma-3>
           <v-card>
             <v-card-title>
-              <h2>VuetifyDialogPromise</h2>
+              <h1>VuetifyDialogPromise</h1>
             </v-card-title>
             <v-card-text>
               <p>
-                The VuetifyDialogPromise plugin provides a Promise API for Vuetify dialogs and snackbar notifications. Use:
+                The VuetifyDialogPromise plugin provides a Promise API for Vuetify dialogs and snackbar notifications.
+                Provides the following instance methods:
               </p>
+              <ul>
+              <li><code>$alert( message )</code>  Raise a modal alert</li>
+              <li><code>$confirm( message )</code>  Raise a modal confirmation dialogue</li>
+              <li><code>$prompt( message )</code>  Raise a modal prompt for an input</li>
+              <li><code>$inform( message )</code>  Raise a notification in the "info" colour</li>
+              <li><code>$warn( message )</code>  Raise a notification in the "warn" colour</li>
+              <li><code>$error( message )</code>  Raise a notification in the "error" colour</li>
+            </ul>
+              <br/>
+              <h2>Installation</h2>
               <p>Add the following to your package.json.dependencies:</p>
               <p>
                 <code>"vuetify-dialog-promise": "git+https://www.avain.intra/bitbucket/scm/cloud/vuetify-dialog-promise.git",</code>
@@ -25,9 +36,46 @@
               <p>
                 <code>import DialogPromise from 'vuetify-dialog-promise';<br/> Vue.use( DialogPromise );</code>
               </p>
-              <h3>
+              <h2>Use</h2>
+              <p>
+                To use from your components, for example:
+              </p>
+              <p>
+<code>
+  /**
+   * With a plain text message
+   */
+  this.$prompt( "What is your favourite colour?" ).then( colour =>
+  {
+      this.$inform( "The colour is " + colour + "." );
+  } );
+</code>
+              </p>
+              <p><v-btn @click="tryPlain()">Try it</v-btn></p>
+              <p>
+<code>
+  /**
+   * With custom properties
+   */
+  this.$prompt( {
+      title : "Important question:",
+      text : "What is your favourite colour?",
+      maxWidth : 600,
+      acceptText : "This",
+      cancelText : "Won't say"
+  } ).then( colour =>
+  {
+      this.$warn( {
+          text : "The colour is " + colour + ".",
+          closeText : "Yeah!",
+          timeout : 0 } );
+  } );
+</code>
+              </p>
+              <p><v-btn @click="tryFull()">Try it</v-btn></p>
+              <h2>
                 Common dialog properties:
-              </h3>
+              </h2>
               <v-flex d-inline-flex ma-2>
                 <v-text-field v-model="defaults.title" label="Dialog title (title)"></v-text-field>
               </v-flex>
@@ -40,9 +88,9 @@
               <v-flex d-inline-flex ma-2>
                 <v-text-field v-model="defaults.maxWidth" type="number" label="Max width (maxWidth)"></v-text-field>
               </v-flex>
-              <h3>
+              <h2>
                 Common snackbar properties
-              </h3>
+              </h2>
               <v-flex d-inline-flex ma-2>
                 <v-text-field v-model="defaults.closeText" label="Close button label (closeText)"></v-text-field>
               </v-flex>
@@ -126,6 +174,38 @@
                         description : "Shows a notification in the error color.",
                     }
                 ]
+            }
+        },
+        methods : {
+            tryPlain()
+            {
+                /**
+                 * With a plain text message
+                 */
+                this.$prompt( "What is your favourite colour?" ).then( colour =>
+                {
+                    this.$inform( "The colour is " + colour + "." );
+                } );
+
+            },
+            tryFull()
+            {
+                /**
+                 * With custom properties
+                 */
+                this.$prompt( {
+                    title : "Important question:",
+                    text : "What is your favourite colour?",
+                    maxWidth : 600,
+                    acceptText : "This",
+                    cancelText : "Won't say"
+                } ).then( colour =>
+                {
+                    this.$warn( {
+                        text : "The colour is " + colour + ".",
+                        closeText : "Yeah!",
+                        timeout : 0 } );
+                } );
             }
         }
     }
