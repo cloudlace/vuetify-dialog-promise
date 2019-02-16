@@ -1,16 +1,5 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">DIALOG PROMISE</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
-    <v-content>
-      <dialog-promise-demo></dialog-promise-demo>
-    </v-content>
-  </v-app>
+  <dialog-promise-demo></dialog-promise-demo>
 </template>
 
 <script>

@@ -63,7 +63,14 @@
                         maxWidth : this.defaults.maxWidth
                     } ).then( result =>
                     {
-                        this.$inform( "The result was: " + result );
+                        this.$inform( {
+                            text : "The result was:" + result,
+                            timeout : this.defaults.timeout,
+                            closeText : this.defaults.closeText,
+                            x : this.defaults.x,
+                            y : this.defaults.y,
+                            color : this.defaults.color
+                        } );
                     } );
                 }
                 else
@@ -71,7 +78,10 @@
                     this[ '$' + this.type ]( {
                         text : this.text,
                         timeout : this.defaults.timeout,
-                        closeText : this.defaults.closeText
+                        closeText : this.defaults.closeText,
+                        x : this.defaults.x,
+                        y : this.defaults.y,
+                        color : this.defaults.color
                     } );
                 }
             }
