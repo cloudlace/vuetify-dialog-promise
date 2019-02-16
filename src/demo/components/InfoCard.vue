@@ -29,7 +29,7 @@
             </p>
             <p>
               <code class="d-block">
-    npm install vuetify-promise
+    npm install vuetify-dialog-promise
               </code>
             </p>
             <p>In your Vue app:</p>
