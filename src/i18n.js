@@ -69,6 +69,13 @@ export default {
             Close : "Cerrar"
         }
     },
+    en : {
+        message : {
+            Accept : "Accept",
+            Cancel : "Cancel",
+            Close : "Close"
+        }
+    },
     eu : {
         message : {
             Accept : "Ados",
