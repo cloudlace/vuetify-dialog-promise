@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import DialogPromiseDemo from './demo/components/DialogPromiseDemo'
+import DialogPromiseDemo from './demo/DialogPromiseDemo'
 
 export default {
   name: 'App',

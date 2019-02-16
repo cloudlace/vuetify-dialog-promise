@@ -110,9 +110,9 @@
 </template>
 
 <script>
-    import DemoCard from './DemoCard';
-    import InfoCard from './InfoCard';
-    import i18n from '../../i18n';
+    import DemoCard from './components/DemoCard';
+    import InfoCard from './components/InfoCard';
+    import i18n from '../i18n';
 
     const locales = Object.keys( i18n );
 

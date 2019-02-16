@@ -14,7 +14,7 @@
         <v-card-actions>
           <v-btn v-on:click="cancel" v-if="type !== 'alert'">{{ message.cancelText }}</v-btn>
           <v-spacer></v-spacer>
-          <v-btn v-on:click="accept" color="info">{{ message.acceptText }}</v-btn>
+          <v-btn v-on:click="accept" color="primary">{{ message.acceptText }}</v-btn>
         </v-card-actions>
       </v-responsive>
     </v-card>
