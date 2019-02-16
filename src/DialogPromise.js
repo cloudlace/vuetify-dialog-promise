@@ -6,6 +6,8 @@ import SimpleSnackbar from './components/SimpleSnackbar';
 
 const _SimpleDialog = Vue.extend( SimpleDialog );
 const _SimpleSnackbar = Vue.extend( SimpleSnackbar );
+const defaults = {
+};
 /**
  * Vue instance controlling i18n.
  */
@@ -39,12 +41,14 @@ function _showDialog( type, message )
                     text : message
                 };
             }
+            const _message = {};
+            Object.assign( _message, defaults, message );
             message.acceptText = message.acceptText || vue.$t( "message.Accept" );
             message.cancelText = message.cancelText || vue.$t( "message.Cancel" );
             dlog = new _SimpleDialog( {
                 propsData : {
                     type : type,
-                    message : message,
+                    message : _message,
                     resolve : _resolve
                 }
             } );
@@ -52,7 +56,14 @@ function _showDialog( type, message )
         } ).then( result =>
         {
             setTimeout( () => dlog.$destroy, 300 );
-            resolve( result );
+            if( result === false )
+            {
+                reject();
+            }
+            else
+            {
+                resolve( result );
+            }
         } );
     } );
 }
@@ -63,9 +74,9 @@ function _showDialog( type, message )
  *
  * text : {string}
  * color : {string}
- * timeout {integer}
- * x : {string<"left"|"right">}
- * y : {string<"top"|"bottom">}
+ * snackbarTimeout {integer}
+ * snackbarX : {string<"left"|"right">}
+ * snackbarY : {string<"top"|"bottom">}
  *
  * @param color
  * @param message
@@ -79,18 +90,14 @@ function _showSnackbar( color, message )
             text : message
         }
     }
-    const _message = Object.assign( {
-        text : "",
-        x : "right",
-        y : "top",
-        color : color,
-        timeout : 3000,
-        closeText : vue.$t( "message.Close" )
-    }, message );
+    const _message = {
+        color : color
+    };
+    Object.assign( _message, defaults, message );
     const sbar = new _SimpleSnackbar( {
         propsData : _message
     } );
-    const dNode = document.getElementById( this._snackbarParent ).appendChild( document.createElement( "div" ) );
+    const dNode = document.getElementById( defaults.snackbarParent ).appendChild( document.createElement( "div" ) );
     sbar.$mount( dNode );
     sbar.show();
     sbar.$on( "close", () =>
@@ -133,7 +140,16 @@ const DialogPromise = {
             messages : dlogI18n
         } );
         vue = new Vue( { i18n } );
-        this._snackbarParent = options.snackbarParent || "app";
+        Object.assign( defaults, {
+            acceptText : vue.$t( "message.Accept" ),
+            cancelText : vue.$t( "message.Cancel" ),
+            closeText : vue.$t( "message.Close" ),
+            snackbarX : "right",
+            snackbarY : "top",
+            snackbarTimeout : 3000,
+            dialogMaxWidth : 500,
+            snackbarParent : "app"
+        }, options );
         Vue.prototype.$alert = _showDialog.bind( this, "alert" );
         Vue.prototype.$confirm = _showDialog.bind( this, "confirm" );
         Vue.prototype.$prompt = _showDialog.bind( this, "prompt" );

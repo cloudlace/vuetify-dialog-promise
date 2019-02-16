@@ -2,11 +2,11 @@
   <v-snackbar
       v-model="shown"
       :color="color"
-      :bottom="y === 'bottom'"
-      :left="x === 'left'"
-      :right="x === 'right'"
-      :timeout="timeout"
-      :top="y === 'top'"
+      :bottom="snackbarY === 'bottom'"
+      :left="snackbarX === 'left'"
+      :right="snackbarX === 'right'"
+      :timeout="snackbarTimeout"
+      :top="snackbarY === 'top'"
   >
     {{ text }}
     <v-btn
@@ -23,10 +23,10 @@
     export default {
         name : "Snackbar",
         props : {
-            x : String,
-            y : String,
+            snackbarX : String,
+            snackbarY : String,
             color : String,
-            timeout : Number,
+            snackbarTimeout : Number,
             closeText : String,
             text : String
         },

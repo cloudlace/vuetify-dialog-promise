@@ -44,7 +44,10 @@
                     this[ '$' + this.type ]( this.text ).then( result =>
                     {
                         this.$inform( "The result was: " + result );
-                    } );
+                    } ).catch( () =>
+                    {
+                        this.$error( "The user rejected the dialog." );
+                    } );
                 }
                 else
                 {
@@ -60,27 +63,30 @@
                         text : this.text,
                         cancelText : this.defaults.cancelText,
                         acceptText : this.defaults.acceptText,
-                        maxWidth : this.defaults.maxWidth
+                        dialogMaxWidth : this.defaults.dialogMaxWidth
                     } ).then( result =>
                     {
                         this.$inform( {
                             text : "The result was:" + result,
-                            timeout : this.defaults.timeout,
+                            snackbarTimeout : this.defaults.snackbarTimeout,
                             closeText : this.defaults.closeText,
-                            x : this.defaults.x,
-                            y : this.defaults.y,
+                            snackbarX : this.defaults.snackbarX,
+                            snackbarY : this.defaults.snackbarY,
                             color : this.defaults.color
                         } );
-                    } );
+                    } ).catch( () =>
+                    {
+                        this.$error( "The user rejected the dialog." );
+                    } );
                 }
                 else
                 {
                     this[ '$' + this.type ]( {
                         text : this.text,
-                        timeout : this.defaults.timeout,
+                        snackbarTimeout : this.defaults.snackbarTimeout,
                         closeText : this.defaults.closeText,
-                        x : this.defaults.x,
-                        y : this.defaults.y,
+                        snackbarX : this.defaults.snackbarX,
+                        snackbarY : this.defaults.snackbarY,
                         color : this.defaults.color
                     } );
                 }

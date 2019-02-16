@@ -49,8 +49,8 @@
                                     label="Accept button label (acceptText)"></v-text-field>
                     </v-flex>
                     <v-flex d-inline-flex ma-2>
-                      <v-text-field v-model="defaults.maxWidth" type="number"
-                                    label="Max width (maxWidth)"></v-text-field>
+                      <v-text-field v-model="defaults.dialogMaxWidth" type="number"
+                                    label="Max width (dialogMaxWidth)"></v-text-field>
                     </v-flex>
                   </v-flex>
                 </v-card-text>
@@ -71,18 +71,18 @@
                                     label="Close button label (closeText)"></v-text-field>
                     </v-flex>
                     <v-flex d-inline-flex ma-2 style="width: 120px">
-                      <v-text-field v-model="defaults.timeout" type="number" label="Timeout (timeout)"></v-text-field>
+                      <v-text-field v-model="defaults.snackbarTimeout" type="number" label="Timeout (snackbarTimeout)"></v-text-field>
                     </v-flex>
                     <v-flex d-inline-flex ma-2 style="width: 120px">
                       <v-text-field v-model="defaults.color"
                                     label="Color, overrides setting from inform/warn/error (color)"></v-text-field>
                     </v-flex>
                     <v-flex d-inline-flex ma-2 style="width: 120px">
-                      <v-select v-model="defaults.x" label="Horizontal position (x)"
+                      <v-select v-model="defaults.snackbarX" label="Horizontal position (snackbarX)"
                                 :items="[ 'left', 'right' ]"></v-select>
                     </v-flex>
                     <v-flex d-inline-flex ma-2 style="width: 120px">
-                      <v-select v-model="defaults.y" label="Vertical position (y)"
+                      <v-select v-model="defaults.snackbarY" label="Vertical position (snackbarY)"
                                 :items="[ 'top', 'bottom' ]"></v-select>
                     </v-flex>
                   </v-flex>
@@ -140,7 +140,7 @@
                 newLocale : _getLocale(),
                 locale : _getLocale(),
                 locales : locales,
-                shown : "info",
+                shown : "demo",
                 defaults : {
                     title : "Important!",
                     cancelText : "No thanks",
@@ -151,12 +151,12 @@
                     inform_text : "You are now informed.",
                     warn_text : "Something went wrong.",
                     error_text : "Something went badly wrong!",
-                    x : "left",
-                    y : "bottom",
+                    snackbarX : "left",
+                    snackbarY : "bottom",
                     color : "pink",
-                    timeout : 1000,
+                    snackbarTimeout : 1000,
                     closeText : "Okay",
-                    maxWidth : 400,
+                    dialogMaxWidth : 400,
                 },
                 demos : [
                     {
@@ -167,12 +167,12 @@
                     {
                         type : "confirm",
                         isPromise : true,
-                        description : "Show a confirmation message, which resolves as true or false depending on user choice:",
+                        description : "Show a confirmation message, which resolves or rejects depending on user choice:",
                     },
                     {
                         type : "prompt",
                         isPromise : true,
-                        description : "Show a prompt, which resolves with the user's input or false if rejected:",
+                        description : "Show a prompt, which resolves with the user's input or rejects if rejected:",
                     },
                     {
                         type : "inform",

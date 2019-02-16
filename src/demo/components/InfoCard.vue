@@ -10,8 +10,8 @@
             </p>
             <ul>
               <li><code>$alert( message ).then( result => handler )</code> Raise a modal alert</li>
-              <li><code>$confirm( message ).then( result => handler )</code> Raise a modal confirmation dialogue</li>
-              <li><code>$prompt( message ).then( result => handler )</code> Raise a modal prompt for an input</li>
+              <li><code>$confirm( message ).then( result => handler ).catch( reject => {} );</code> Raise a modal confirmation dialogue</li>
+              <li><code>$prompt( message ).then( result => handler ).catch( reject => {} );</code> Raise a modal prompt for an input</li>
               <li><code>$inform( message )</code> Raise a notification in the "info" colour</li>
               <li><code>$warn( message )</code> Raise a notification in the "warn" colour</li>
               <li><code>$error( message )</code> Raise a notification in the "error" colour</li>
@@ -36,11 +36,21 @@
             <p>
               <code class="d-block">
     import DialogPromise from 'vuetify-dialog-promise';
-    Vue.use( DialogPromise, { snackbarParent : "app", locale : "en" );
+    Vue.use( DialogPromise, { 
+        snackbarParent : "app",
+        locale : "en",
+        acceptText : "My Default OK",
+        cancelText : "My Default Cancel",
+        closeText : "My Default Close",
+        snackbarX : "left",
+        snackbarY : "bottom",
+        snackbarTimeout : 1000,
+        dialogMaxWidth : 450
+    } );
               </code>
             </p>
             <p>
-              The <code>{ snackbarParent : "app" }</code> option controls where snackbars are mounted. It defaults
+              All options have defaults. The <code>{ snackbarParent : "app" }</code> option controls where snackbars are mounted. It defaults
               to "app" so if your v-app root is something different, change it.
             </p>
             <h2>Use</h2>
@@ -69,7 +79,7 @@
     this.$prompt( {
         title : "Important question:",
         text : "What is your favourite colour?",
-        maxWidth : 600,
+        dialogMaxWidth : 600,
         acceptText : "This",
         cancelText : "Won't say"
     } ).then( color =>
@@ -110,7 +120,7 @@
                 this.$prompt( {
                     title : "Important question:",
                     text : "What is your favourite colour?",
-                    maxWidth : 600,
+                    dialogMaxWidth : 600,
                     acceptText : "This",
                     cancelText : "Won't say"
                 } ).then( color =>
@@ -119,7 +129,7 @@
                         color : color,
                         text : "The color is " + color + ".",
                         closeText : "Yeah!",
-                        timeout : 0
+                        snackbarTimeout : 0
                     } );
                 } );
             }

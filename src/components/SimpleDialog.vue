@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="shown"
-            :max-width="message.maxWidth || 500"
+            :max-width="message.dialogMaxWidth || 500"
             persistent>
     <v-card>
       <v-responsive>
