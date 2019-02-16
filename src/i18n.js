@@ -62,18 +62,18 @@ export default {
             Close : "Κλείσιμο"
         }
     },
-    es : {
-        message : {
-            Accept : "Aceptar",
-            Cancel : "Cancelar",
-            Close : "Cerrar"
-        }
-    },
     en : {
         message : {
             Accept : "Accept",
             Cancel : "Cancel",
             Close : "Close"
+        }
+    },
+    es : {
+        message : {
+            Accept : "Aceptar",
+            Cancel : "Cancelar",
+            Close : "Cerrar"
         }
     },
     eu : {

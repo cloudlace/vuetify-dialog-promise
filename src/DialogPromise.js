@@ -6,8 +6,10 @@ import SimpleSnackbar from './components/SimpleSnackbar';
 
 const _SimpleDialog = Vue.extend( SimpleDialog );
 const _SimpleSnackbar = Vue.extend( SimpleSnackbar );
+/**
+ * Vue instance controlling i18n.
+ */
 let vue;
-
 /**
  * Show a dialog of type "alert", "confirm", or "prompt." Returned promise is resolved with the dialog result when the
  * user dismisses or completes it. Message can be a string or an Object with the following properties:
@@ -114,8 +116,9 @@ function _showSnackbar( color, message )
 const DialogPromise = {
     name : "DialogPromise",
     /**
-     * By default, snackbars are mounted under #app. This can be overridden with the snackbarParent option, in case
-     * your v-app root isn't #app.
+     * Options:
+     * - snackbarParent : {string}, default "app" - ID of element under which snackbars will be mounted.
+     * - locale : {string}, default "en" - Locale identifier
      *
      * @param Vue {Vue}
      * @param options {object}
