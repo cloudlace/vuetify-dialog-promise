@@ -43,8 +43,6 @@ function _showDialog( type, message )
             }
             const _message = {};
             Object.assign( _message, defaults, message );
-            message.acceptText = message.acceptText || vue.$t( "message.Accept" );
-            message.cancelText = message.cancelText || vue.$t( "message.Cancel" );
             dlog = new _SimpleDialog( {
                 propsData : {
                     type : type,
