@@ -1,1 +1,2 @@
-module.exports = require( "./src/DialogPromise" );
+import DialogPromise from "./src/DialogPromise";
+export default DialogPromise;
