@@ -1,22 +1,23 @@
 {
   "name": "vuetify-dialog-promise",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test" : "vue-cli-service test:unit",
     "test:unit": "vue-cli-service test:unit"
   },
   "main": "index.js",
   "dependencies": {
-    "vue": "^2.6.8",
-    "vue-i18n": "^8.9.0",
-    "vuetify": "^1.5.6"
+    "vue": "^2.6.10",
+    "vue-i18n": "^8.11.2",
+    "vuetify": "^1.5.16"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.1",
-    "@vue/cli-plugin-unit-mocha": "^3.5.1",
-    "@vue/cli-service": "^3.5.1",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-unit-mocha": "^3.8.0",
+    "@vue/cli-service": "^3.8.4",
     "@vue/test-utils": "^1.0.0-beta.20",
     "chai": "^4.1.2",
     "less": "^3.0.4",
@@ -24,8 +25,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-cli-plugin-vuetify": "^0.4.6",
-    "vue-template-compiler": "^2.6.8",
-    "vuetify-loader": "^1.0.5"
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.2.2"
   },
   "postcss": {
     "plugins": {

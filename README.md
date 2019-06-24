@@ -1,13 +1,25 @@
 # vuetify-dialog-promise
 
-A Promise API for Vuetify dialogs. Adds the following methods to the Vue instance:
+A Promise API for Vuetify dialogs and utility for raising snackbar alerts. Adds the following methods to the Vue 
+instance:
 
-* `$alert( /* {string}|{Object} */ message )`
-* `$confirm( /* {string}|{Object} */ message )`
-* `$prompt( /* {string}|{Object} */ message )`
-* `$inform( /* {string}|{Object} */ message )`
-* `$warn( /* {string}|{Object} */ message )`
-* `$error( /* {string}|{Object} */ message )`
+* `$alert( /* {string}|{Object} */ message )` - A classic alert. Promise, resolves when the user clicks OK.
+* `$confirm( /* {string}|{Object} */ message )` - A classic confirm. Promise, resolves as true when the user 
+clicks OK, as false when the user clicks Cancel.
+* `$prompt( /* {string}|{Object} */ message )` - A classic prompt. Promise, resolves with user input if user clicks OK,
+with false if the user clicks Cancel.
+* `$inform( /* {string}|{Object} */ message )` - Raises a snackbar notification in the default colour.
+* `$warn( /* {string}|{Object} */ message )` - Raises a snackbar notification in the warning colour.
+* `$error( /* {string}|{Object} */ message )` - Raises a snackbar notification in the error colour.
+
+Based on vue-cli3 and Vuetify.
+
+Features:
+
+* Button labels localised to a large variety of languages (pull requests welcome)
+* Allows you to inject your own i18n or your own labels
+* Various features of the dialogues and snackbars are configurable (e.g. dialog max width, snackbar location, colour, 
+duration)
 
 Full description in examples accessible from home page served by `npm run serve`.
 
