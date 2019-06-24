@@ -4,18 +4,19 @@ A Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and u
  
 Adds the following methods to the Vue instance:
 
-* `$alert( /* {string}|{Object} */ message )` 
+* `$alert( message )` 
     - A classic alert. Promise, resolved when the user clicks OK.
-* `$confirm( /* {string}|{Object} */ message )` 
+    - `message` can be a string or an object with properties `{ title, text }` (applies to other methods also (see below).
+* `$confirm( message )` 
     - A classic confirm. Promise, resolved if the user clicks OK, rejected 
 if the user clicks Cancel.
-* `$prompt( /* {string}|{Object} */ message )` 
+* `$prompt( message )` 
     - A classic prompt. Promise, resolved with user input if user clicks OK, rejected if the user clicks Cancel.
-* `$inform( /* {string}|{Object} */ message )` 
+* `$inform( message )` 
     - Raises a snackbar notification in the default colour.
-* `$warn( /* {string}|{Object} */ message )` 
+* `$warn( message )` 
     - Raises a snackbar notification in the warning colour.
-* `$error( /* {string}|{Object} */ message )` 
+* `$error( message )` 
     - Raises a snackbar notification in the error colour.
 
 Based on [Vue CLI](https://cli.vuejs.org/) and [Vuetify](https://www.npmjs.com/package/vuetify).
@@ -33,8 +34,12 @@ Full description in examples accessible from home page served by `npm run serve`
 ## Configurable properties
 
 Various properties can be configured by handing them to Vue.use in the `options` argument when installing the plugin. 
+(see **Usage examples** below). 
+
 All of these are optional and have defaults:
 
+* `locale` 
+    - Locale for the button labels. Over 30 locales are supported. To override, see the properties below.
 * `acceptText` 
     - Label for accept button in dialog
 * `cancelText` 
@@ -52,7 +57,7 @@ All of these are optional and have defaults:
 * `snackbarParent` 
     - ID of parent node in which the dialogs are mounted, default is "app"
 
-## Usage example
+## Usage examples
 
 To install and configure the plugin:
 
@@ -73,9 +78,14 @@ To use the plugin from inside your own component:
 this.$confirm( "Do you weigh less than a duck?" ).then( y => 
     this.burnTheWitch() ).catch( n => {} );
 this.$prompt( "What is your quest?" ).then( quest => 
-    this.continueQuest( quest ) ).catch( n => {} );
+    this.beginQuest( quest ) ).catch( n => {} );
 this.$inform( "We are the knights that say Ni." );
 ```
+
+To experiment with the plugin, fork the [Github repository](https://github.com/PrimeJunta/vuetify-dialog-promise.git),
+run `npm install` and `npm run serve` from the command line, and follow the link. 
+
+If used in a Vue-CLI project, this will be baked into your layer without you having to do anything.
 
 ## Project setup
 ```
