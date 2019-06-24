@@ -1,6 +1,6 @@
 # vuetify-dialog-promise
 
-A Promise API for Vuetify dialogs and utility for raising snackbar alerts.
+A Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and utility for raising snackbar alerts.
  
 Adds the following methods to the Vue instance:
 
@@ -18,12 +18,12 @@ if the user clicks Cancel.
 * `$error( /* {string}|{Object} */ message )` 
     - Raises a snackbar notification in the error colour.
 
-Based on vue-cli3 and Vuetify.
+Based on [Vue CLI](https://cli.vuejs.org/) and [Vuetify](https://www.npmjs.com/package/vuetify).
 
 ## Features
 
 * Button labels localised to a large variety of languages (pull requests welcome) - Localisations for the buttons are
-from the Dojo toolkit i18n.
+from the [Dojo toolkit](https://dojotoolkit.org/) i18n.
 * Allows you to inject your own button labels, overriding the defaults
 * Various features of the dialogues and snackbars are configurable (e.g. dialog max width, snackbar location, colour, 
 duration)
