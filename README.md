@@ -6,7 +6,8 @@ Adds the following methods to the Vue instance:
 
 * `$alert( message )` 
     - A classic alert. Promise, resolved when the user clicks OK.
-    - `message` can be a string or an object with properties `{ title, text }` (applies to other methods also (see below).
+    - `message` can be a string or an object with properties `{ title, text }` where title becomes the dialog title and
+    text becomes the message to display. Applies to other methods also (see below).
 * `$confirm( message )` 
     - A classic confirm. Promise, resolved if the user clicks OK, rejected 
 if the user clicks Cancel.
@@ -24,12 +25,12 @@ Based on [Vue CLI](https://cli.vuejs.org/) and [Vuetify](https://www.npmjs.com/p
 ## Features
 
 * Button labels localised to a large variety of languages (pull requests welcome) - Localisations for the buttons are
-from the [Dojo toolkit](https://dojotoolkit.org/) i18n.
+extracted from the [Dojo toolkit](https://dojotoolkit.org/) i18n.
 * Allows you to inject your own button labels, overriding the defaults
 * Various features of the dialogues and snackbars are configurable (e.g. dialog max width, snackbar location, colour, 
 duration)
 
-Full description in examples accessible from home page served by `npm run serve`.
+Full description and more examples accessible from home page served by `npm run serve`.
 
 ## Configurable properties
 

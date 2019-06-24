@@ -18,12 +18,6 @@
             </ul>
             <br/>
             <h2>Installation</h2>
-            <p>Add the following to your package.json.dependencies:</p>
-            <p>
-              <code class="d-block">
-    "vuetify-dialog-promise": "git+https://www.avain.intra/bitbucket/scm/cloud/vuetify-dialog-promise.git",
-              </code>
-            </p>
             <p>
               On the command line:
             </p>
