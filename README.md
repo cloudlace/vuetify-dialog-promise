@@ -5,16 +5,21 @@ A Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and u
 Adds the following methods to the Vue instance:
 
 * `$alert( message )` 
-    - A classic alert. Promise, resolved when the user clicks OK.
-    - `message` can be a string or an object with properties `{ title, text }` where title becomes the dialog title and
-    text becomes the message to display. Applies to other methods also (see below).
+    - An alert dialog. Returns Promise, resolved when the user accepts it.
+    - `message` can be a string or an object with properties `{ text, title?, dialogMaxWidth?, acceptText?, 
+    cancelText? }` where `title` becomes the dialog title, `text` becomes the message to display, and the other 
+    properties control the appearance and behaviour of the dialog (see "Configurable properties" below). Applies to 
+    `$confirm` and `$prompt` also (see below).
 * `$confirm( message )` 
-    - A classic confirm. Promise, resolved if the user clicks OK, rejected 
-if the user clicks Cancel.
+    - A confirmation dialog. Returns Promise, resolved if the user accepts it, rejected if the user cancels it.
 * `$prompt( message )` 
-    - A classic prompt. Promise, resolved with user input if user clicks OK, rejected if the user clicks Cancel.
+    - A prompt dialog. Returns Promise, resolved with user input if user accepts it, rejected if the user cancels it.
 * `$inform( message )` 
     - Raises a snackbar notification in the default colour.
+    - `message` can be a string or an object with properties `{ text, color?, closeText?, snackbarX?, snackbarY?,
+    snackbarTimeout? }` where `text` becomes the message to display, and the other properties control the appearance
+    and behaviour of the snackbar (see "Configurable properties" below). Applies to `$warn` and `$error` also (see 
+    below).
 * `$warn( message )` 
     - Raises a snackbar notification in the warning colour.
 * `$error( message )` 
@@ -76,11 +81,26 @@ Vue.use( DialogPromise, {
 To use the plugin from inside your own component:
 
 ```
-this.$confirm( "Do you weigh less than a duck?" ).then( y => 
-    this.burnTheWitch() ).catch( n => {} );
+// Message with defaults
+this.$alert( "Your mother is a hamster and your father smells of elderberries." );
+
+// Confirmation with property overrides
+this.$confirm( { 
+    title : "Are you a witch?", 
+    text : "Do you weigh less than a duck?", 
+    acceptText : "I float", 
+    cancelText : "I sink"
+ } ).then( y => this.burnTheWitch() ).catch( n => this.notAWitch() );
+ 
+// Prompt for value
 this.$prompt( "What is your quest?" ).then( quest => 
     this.beginQuest( quest ) ).catch( n => {} );
+    
+// Snackbar notification with defaults    
 this.$inform( "We are the knights that say Ni." );
+
+// Snackbar notification with overrides
+this.$inform( { text : "My favourite colour is blue.", color : "blue" } );
 ```
 
 To experiment with the plugin, fork the [Github repository](https://github.com/PrimeJunta/vuetify-dialog-promise.git),
