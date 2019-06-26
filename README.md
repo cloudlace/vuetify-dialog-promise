@@ -94,7 +94,7 @@ this.$confirm( {
  
 // Prompt for value
 this.$prompt( "What is your quest?" ).then( quest => 
-    this.beginQuest( quest ) ).catch( n => {} );
+    this.beginQuest( quest ).catch( n => {} );
     
 // Snackbar notification with defaults    
 this.$inform( "We are the knights that say Ni." );
