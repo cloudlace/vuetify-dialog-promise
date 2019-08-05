@@ -103,9 +103,6 @@ this.$inform( "We are the knights that say Ni." );
 this.$inform( { text : "My favourite colour is blue.", color : "blue" } );
 ```
 
-To experiment with the plugin, fork the [Github repository](https://github.com/PrimeJunta/vuetify-dialog-promise.git),
-run `npm install` and `npm run serve` from the command line, and follow the link. 
-
 If used in a Vue-CLI project, this will be baked into your layer without you having to do anything.
 
 ## Project setup
