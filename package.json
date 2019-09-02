@@ -1,6 +1,6 @@
 {
   "name": "vuetify-dialog-promise",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "license": "MIT",
   "scripts": {
     "prepare": "npm run build-bundle",
