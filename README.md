@@ -65,6 +65,8 @@ All of these are optional and have defaults:
 
 ## Usage examples
 
+### In a Vue CLI project
+
 To install and configure the plugin:
 
 ```
@@ -103,7 +105,10 @@ this.$inform( "We are the knights that say Ni." );
 this.$inform( { text : "My favourite colour is blue.", color : "blue" } );
 ```
 
-If used in a Vue-CLI project, this will be baked into your layer without you having to do anything.
+### Directly in the browser
+
+To experiment with the plugin directly in the browser, refer to [this online example](https://codepen.io/brikoleur/pen/MWgEbGP).
+
 
 ## Project setup
 ```
