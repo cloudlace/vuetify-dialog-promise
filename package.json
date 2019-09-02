@@ -1,6 +1,6 @@
 {
   "name": "vuetify-dialog-promise",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,8 +11,8 @@
   "main": "index.js",
   "dependencies": {
     "vue": "^2.6.10",
-    "vue-i18n": "^8.12.0",
-    "vuetify": "^1.5.16"
+    "vue-i18n": "^8.14.0",
+    "vuetify": "^1.5.18"
   },
   "repository": {
     "type": "git",
@@ -25,14 +25,14 @@
     "promise"
   ],
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
-    "@vue/cli-plugin-unit-mocha": "^3.10.0",
-    "@vue/cli-service": "^3.10.0",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-unit-mocha": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
     "@vue/test-utils": "^1.0.0-beta.20",
     "chai": "^4.1.2",
-    "less": "^3.0.4",
+    "less": "^3.10.3",
     "less-loader": "^4.1.0",
-    "stylus": "^0.54.5",
+    "stylus": "^0.54.7",
     "stylus-loader": "^3.0.1",
     "vue-cli-plugin-vuetify": "^0.4.6",
     "vue-template-compiler": "^2.6.10",

@@ -1,4 +1,4 @@
-# The Cloudcore Code of Conduct
+# The Cloudlace Code of Conduct
 
 **Version:** 1.0.0
 
