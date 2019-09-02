@@ -1,8 +1,8 @@
 {
   "name": "vuetify-dialog-promise",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "license": "MIT",
-  "prepare" : "npm run build-bundle",
+  "prepare": "npm run build-bundle",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
