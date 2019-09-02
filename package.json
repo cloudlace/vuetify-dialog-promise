@@ -2,8 +2,8 @@
   "name": "vuetify-dialog-promise",
   "version": "1.0.18",
   "license": "MIT",
-  "prepare": "npm run build-bundle",
   "scripts": {
+    "prepare": "npm run build-bundle",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-bundle": "vue-cli-service build --target lib --name vuetifyDialogPromise ./src/DialogPromise.js",
