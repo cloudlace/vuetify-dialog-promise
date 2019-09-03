@@ -2,17 +2,18 @@
 
 A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and snackbar notifications.
 
-Intended to be as straightforward to use as native modal browser dialogues, with the look and feel of Vuetify widgets and
-sufficient flexibility to cover most use cases.
+Intended to be as straightforward to use as native browser dialogues, with the look and feel of Vuetify widgets and
+sufficient flexibility to cover most use cases involving straightforward alerts, notifications, confirmations, and
+prompts. 
  
 Adds the following methods to the Vue instance:
 
 * `$alert( message )` 
     - An alert dialog. Returns Promise, resolved when the user accepts it.
-    - `message` can be a string or an object with properties `{ text, title?, dialogMaxWidth?, acceptText?, 
-    cancelText? }` where `title` becomes the dialog title, `text` becomes the message to display, and the other 
-    properties control the appearance and behaviour of the dialog (see "Configurable properties" below). Applies to 
-    `$confirm` and `$prompt` also (see below).
+    - `message` can be a string, in which case it is displayed in a plain dialog with an "Accept" button, or an object 
+    with any properties including `{ text, title?, dialogMaxWidth?, acceptText?, cancelText? }` where `title` becomes 
+    the dialog title, `text` becomes the message to display, and the other properties control the appearance and 
+    behaviour of the dialog (see "Configurable properties" below). Also applies to `$confirm` and `$prompt` (see below).
 * `$confirm( message )` 
     - A confirmation dialog. Returns Promise, resolved if the user accepts it, rejected if the user cancels it.
 * `$prompt( message )` 
@@ -21,7 +22,7 @@ Adds the following methods to the Vue instance:
     - Raises a snackbar notification in the default colour.
     - `message` can be a string or an object with properties `{ text, color?, closeText?, snackbarX?, snackbarY?,
     snackbarTimeout? }` where `text` becomes the message to display, and the other properties control the appearance
-    and behaviour of the snackbar (see "Configurable properties" below). Applies to `$warn` and `$error` also (see 
+    and behaviour of the snackbar (see "Initialisation properties" below). Applies to `$warn` and `$error` also (see 
     below).
 * `$warn( message )` 
     - Raises a snackbar notification in the warning colour.
@@ -30,39 +31,37 @@ Adds the following methods to the Vue instance:
 
 ## Features
 
-* Button labels localised to a large variety of languages (pull requests welcome) - Localisations for the buttons are
-extracted from the [Dojo toolkit](https://dojotoolkit.org/) i18n.
+* Button labels localised to a large variety of languages (pull requests welcome)
 * Allows you to inject your own button labels, overriding the defaults
-* Various features of the dialogues and snackbars are configurable (e.g. dialog max width, snackbar location, colour, 
-duration)
-
-Full description and more examples accessible from home page served by `npm run serve`.
+* Various features of the dialogues and snackbars are configurable with initialisation properties (e.g. dialog max 
+width, snackbar location, colour, duration)
 
 ## Initialisation properties
 
 Various properties can be configured by handing them to Vue.use in the `options` argument when installing the plugin. 
 (see **Usage examples** below). 
 
-All of these are optional and have defaults:
+All of these are optional and have reasonable defaults:
 
-* `locale` 
-    - Locale for the button labels. Over 30 locales are supported. To override, see the properties below.
-* `acceptText` 
+* `locale {string}` 
+    - ISO locale identifier for the button labels. Over 30 locales are supported. To override, see the properties below.
+* `acceptText {string}` 
     - Label for accept button in dialog
-* `cancelText` 
+* `cancelText {string}` 
     - Label for cancel button in dialog
-* `closeText` 
+* `closeText {string}` 
     - Label for close button in snackbar message
-* `snackbarX` 
-    - Position of snackbar message: "left" or "right"
-* `snackbarY` 
-    - Position of snackbar message: "top" or "bottom"
-* `snackbarTimeout` 
+* `snackbarX {"left"|"center"|"right"}` 
+    - Position of snackbar message
+* `snackbarY {"top"|"bottom"}`
+    - Position of snackbar message
+* `snackbarTimeout {integer}` 
     - Snackbar duration in milliseconds
-* `dialogMaxWidth` 
+* `dialogMaxWidth {integer}` 
     - Max width of dialog in pixels
-* `snackbarParent` 
-    - ID of parent node in which the dialogs are mounted, default is "app"
+* `snackbarParent {string}` 
+    - ID of parent node in which the snackbars are mounted, default is `"app"`. This should usually refer to the `v-app`
+    instance. If the snackbars are mounted outside it, their CSS styling will not be applied as intended.
 
 ## Usage examples
 
@@ -72,7 +71,7 @@ To experiment with the plugin directly in the browser, refer to [this online exa
 
 ### In a Vue CLI project
 
-To install and configure (all init properties are optional, see "Initialisation properties" above for a list):
+To install and configure (all init properties are optional, see "Initialisation properties" above for complete list):
 
 ```
 import Vue from "vue";
@@ -112,10 +111,9 @@ this.$inform( "We are the knights that say Ni." );
 this.$inform( { text : "My favourite colour is blue.", color : "blue" } );
 ```
 
-
 ## Developer notes
 
-A full demo is provided with the project. Fork and clone the repository and use the following utilities:
+A full demo is provided with the project. To use it, fork and clone the repository and use the following utilities:
 
 ### Project setup
 
@@ -150,3 +148,8 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Credits
+
+* Localisations for the standard button labels are originally extracted from the 
+[Dojo toolkit](https://dojotoolkit.org/) i18n.
