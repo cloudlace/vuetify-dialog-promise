@@ -1,6 +1,9 @@
 # vuetify-dialog-promise
 
-A Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and utility for raising snackbar alerts.
+A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and snackbar notifications.
+
+Intended to be as straightforward to use as native modal browser dialogues, with the look and feel of Vuetify widgets and
+sufficient flexibility to cover most use cases.
  
 Adds the following methods to the Vue instance:
 
@@ -25,8 +28,6 @@ Adds the following methods to the Vue instance:
 * `$error( message )` 
     - Raises a snackbar notification in the error colour.
 
-Based on [Vue CLI](https://cli.vuejs.org/) and [Vuetify](https://www.npmjs.com/package/vuetify).
-
 ## Features
 
 * Button labels localised to a large variety of languages (pull requests welcome) - Localisations for the buttons are
@@ -37,7 +38,7 @@ duration)
 
 Full description and more examples accessible from home page served by `npm run serve`.
 
-## Configurable properties
+## Initialisation properties
 
 Various properties can be configured by handing them to Vue.use in the `options` argument when installing the plugin. 
 (see **Usage examples** below). 
@@ -65,20 +66,26 @@ All of these are optional and have defaults:
 
 ## Usage examples
 
+### Directly in the browser
+
+To experiment with the plugin directly in the browser, refer to [this online example](https://codepen.io/brikoleur/pen/MWgEbGP).
+
 ### In a Vue CLI project
 
-To install and configure the plugin:
+To install and configure (all init properties are optional, see "Initialisation properties" above for a list):
 
 ```
 import Vue from "vue";
-import DialogPromise from "vuetify-dialog-promise";
+import VuetifyDialogPromise from "vuetify-dialog-promise";
 
-Vue.use( DialogPromise, {
+Vue.use( VuetifyDialogPromise, {
     locale : "fi",
     snackbarX : "left",
     snackbarY : "bottom"
 } );
 ```
+
+### Inside your component after the plugin has been loaded
 
 To use the plugin from inside your own component:
 
@@ -105,22 +112,28 @@ this.$inform( "We are the knights that say Ni." );
 this.$inform( { text : "My favourite colour is blue.", color : "blue" } );
 ```
 
-### Directly in the browser
 
-To experiment with the plugin directly in the browser, refer to [this online example](https://codepen.io/brikoleur/pen/MWgEbGP).
+## Developer notes
 
+A full demo is provided with the project. Fork and clone the repository and use the following utilities:
 
-## Project setup
+### Project setup
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads demo app for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies library for production
+```
+npm run build-bundle
+```
+
+### Compiles and minifies demo app for production
 ```
 npm run build
 ```
