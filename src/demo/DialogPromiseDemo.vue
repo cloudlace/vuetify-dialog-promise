@@ -8,20 +8,20 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn class="hidden-xs-only"
-               flat
+               text
                :input-value="shown === 'demo'"
                @click="shown = 'demo'"
                active-class="default-class grey darken-1">
           Playground
         </v-btn>
         <v-btn class="hidden-xs-only"
-               flat
+               text
                :input-value="shown === 'info'"
                @click="shown = 'info'"
                active-class="default-class grey darken-1">
           About
         </v-btn>
-        <v-select dark background-color="grey darken-2" flat solo :items="locales" v-on:input="setLocale()"
+        <v-select dark background-color="grey darken-2" text solo :items="locales" v-on:input="setLocale()"
                   v-model="newLocale" class="ma-2" style="width:75px"></v-select>
       </v-toolbar-items>
     </v-toolbar>

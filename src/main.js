@@ -1,8 +1,9 @@
-import Vue from 'vue'
-import './plugins/vuetify'
-import App from './App.vue'
-import DialogPromise from './DialogPromise'
-import i18n from './i18n'
+import Vue from 'vue';
+import App from './App.vue';
+import vuetify from './plugins/vuetify';
+import DialogPromise from './DialogPromise';
+import i18n from './i18n';
+
 function _getLocale()
 {
     let locale = "en";
@@ -21,5 +22,6 @@ function _getLocale()
 Vue.use( DialogPromise, { snackbarParent : "app", locale : _getLocale() } );
 Vue.config.productionTip = false;
 new Vue( {
-    render : h => h( App ),
+    vuetify,
+    render : h => h( App )
 } ).$mount( '#app' );

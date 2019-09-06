@@ -10,7 +10,7 @@
   >
     {{ text }}
     <v-btn
-        flat
+        text
         :ripple="false"
         @click="close()"
     >
