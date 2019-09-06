@@ -1,8 +1,7 @@
-import {expect} from "chai";
-import {shallowMount} from "@vue/test-utils";
-import SimpleDialog from '../../src/components/SimpleDialog.vue';
+import { expect } from "chai";
+import { shallowMount } from "@vue/test-utils";
 import Vue from "vue";
-
+import SimpleDialog from '../../src/components/SimpleDialog.vue';
 function getDialog( propsData )
 {
     const _SimpleDialog = Vue.extend( SimpleDialog );
