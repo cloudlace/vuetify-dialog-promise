@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app dark color="grey darken-2">
+    <v-app-bar app dark color="grey darken-2">
       <v-toolbar-title>
         <span>Vuetify</span>
         <span class="font-weight-light">DialogPromise</span>
@@ -24,7 +24,7 @@
         <v-select dark background-color="grey darken-2" text solo :items="locales" v-on:input="setLocale()"
                   v-model="newLocale" class="ma-2" style="width:75px"></v-select>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
     <v-content app>
       <info-card v-if="shown === 'info'"></info-card>
       <v-container v-if="shown === 'demo'">

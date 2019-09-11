@@ -62,6 +62,8 @@ All of these are optional and have reasonable defaults:
 * `snackbarParent {string}` 
     - ID of parent node in which the snackbars are mounted, default is `"app"`. This should usually refer to the `v-app`
     instance. If the snackbars are mounted outside it, their CSS styling will not be applied as intended.
+* `theme {Object}`
+    - [Vuetify theme](https://vuetifyjs.com/en/customization/theme) applied to dialogs
 
 ## Usage examples
 

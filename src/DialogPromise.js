@@ -19,8 +19,8 @@ let vue;
  * title : {string},
  * text : {string},
  * acceptText : {string}
- * cancelText : {string}
- *
+ * cancelText : {string},
+ * theme : {Object}         Vuetify theme, see https://vuetifyjs.com/en/customization/theme
  *
  * @param type {string<"alert","confirm","prompt">}
  * @param message {string|Object}
@@ -124,6 +124,15 @@ const DialogPromise = {
      * Options:
      * - snackbarParent : {string}, default "app" - ID of element under which snackbars will be mounted.
      * - locale : {string}, default "en" - Locale identifier
+     * - acceptText : {string}, default from locale - Dialog accept button label
+     * - cancelText : {string}, default from locale - Dialog cancel button label
+     * - closeText : {string}, default from locale - Snackbar close button label
+     * - snackbarX : {"left"|"right"|"center"} - Snackbar position, default "right"
+     * - snackbarY : {"top"|"bottom"} - Snackbar vertical position, default "top"
+     * - snackbarTimeout : {integer} - Snackbar duration in millis, default 3000
+     * - dialogMaxWidth : {integer} - Dialog max width in pixels, default 500
+     * - snackbarParent : {string} - ID of node under which snackbars are mounted (should refer the v-app), default "app"
+     * - theme : {Object} - Vuetify theme, see https://vuetifyjs.com/en/customization/theme (default is default theme)
      *
      * @param Vue {Vue}
      * @param options {object}
@@ -146,7 +155,8 @@ const DialogPromise = {
             snackbarY : "top",
             snackbarTimeout : 3000,
             dialogMaxWidth : 500,
-            snackbarParent : "app"
+            snackbarParent : "app",
+            theme : {}
         }, options );
         Vue.prototype.$alert = _showDialog.bind( this, "alert" );
         Vue.prototype.$confirm = _showDialog.bind( this, "confirm" );
