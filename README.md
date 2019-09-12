@@ -2,6 +2,15 @@
 
 A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and snackbar notifications.
 
+## Major and minor version history
+
+* Version ^1.0.0: requires Vuetify ^1.5.0
+* Version ^2.0.0: requires Vuetify ^2.0.0
+* Version ^2.1.0: accepts `theme` property / config param (see
+  [Vuetify theme](https://vuetifyjs.com/en/customization/theme))
+
+## Description
+
 Intended to be as straightforward to use as native browser dialogues, with the look and feel of Vuetify widgets and
 sufficient flexibility to cover most use cases involving straightforward alerts, notifications, confirmations, and
 prompts. 
