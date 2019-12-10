@@ -31,7 +31,6 @@
               <code class="d-block">
     import DialogPromise from 'vuetify-dialog-promise';
     Vue.use( DialogPromise, { 
-        snackbarParent : "app",
         locale : "en",
         acceptText : "My Default OK",
         cancelText : "My Default Cancel",
@@ -44,8 +43,7 @@
               </code>
             </p>
             <p>
-              All options have defaults. The <code>{ snackbarParent : "app" }</code> option controls where snackbars are mounted. It defaults
-              to "app" so if your v-app root is something different, change it.
+              All options have defaults.
             </p>
             <h2>Use</h2>
             <p>

@@ -95,13 +95,46 @@ function _showSnackbar( color, message )
     const sbar = new _SimpleSnackbar( {
         propsData : _message
     } );
-    const dNode = document.getElementById( defaults.snackbarParent ).appendChild( document.createElement( "div" ) );
+    const dNode = this.$vnode.elm.appendChild( document.createElement( "div" ) );
     sbar.$mount( dNode );
     sbar.show();
     sbar.$on( "close", () =>
     {
         sbar.$destroy();
     } );
+}
+
+/**
+ * Raise a snackbar with the "info" colour.
+ *
+ * @param message
+ * @private
+ */
+function _inform( message)
+{
+    _showSnackbar.bind( this, "info" )( message );
+}
+
+/**
+ * Raise a snackbar with the "warn" colour.
+ *
+ * @param message
+ * @private
+ */
+function _warn( message )
+{
+    _showSnackbar.bind( this, "warning" )( message );
+}
+
+/**
+ * Raise a snackbar with the "error" colour.
+ *
+ * @param message
+ * @private
+ */
+function _error( message )
+{
+    _showSnackbar.bind( this, "error" )( message );
 }
 
 /**
@@ -122,7 +155,6 @@ const DialogPromise = {
     name : "DialogPromise",
     /**
      * Options:
-     * - snackbarParent : {string}, default "app" - ID of element under which snackbars will be mounted.
      * - locale : {string}, default "en" - Locale identifier
      * - acceptText : {string}, default from locale - Dialog accept button label
      * - cancelText : {string}, default from locale - Dialog cancel button label
@@ -131,7 +163,6 @@ const DialogPromise = {
      * - snackbarY : {"top"|"bottom"} - Snackbar vertical position, default "top"
      * - snackbarTimeout : {integer} - Snackbar duration in millis, default 3000
      * - dialogMaxWidth : {integer} - Dialog max width in pixels, default 500
-     * - snackbarParent : {string} - ID of node under which snackbars are mounted (should refer the v-app), default "app"
      * - theme : {Object} - Vuetify theme, see https://vuetifyjs.com/en/customization/theme (default is default theme)
      *
      * @param Vue {Vue}
@@ -155,15 +186,14 @@ const DialogPromise = {
             snackbarY : "top",
             snackbarTimeout : 3000,
             dialogMaxWidth : 500,
-            snackbarParent : "app",
             theme : {}
         }, options );
         Vue.prototype.$alert = _showDialog.bind( this, "alert" );
         Vue.prototype.$confirm = _showDialog.bind( this, "confirm" );
         Vue.prototype.$prompt = _showDialog.bind( this, "prompt" );
-        Vue.prototype.$inform = _showSnackbar.bind( this, "info" );
-        Vue.prototype.$warn = _showSnackbar.bind( this, "warning" );
-        Vue.prototype.$error = _showSnackbar.bind( this, "error" );
+        Vue.prototype.$inform = _inform;
+        Vue.prototype.$warn = _warn;
+        Vue.prototype.$error = _error;
     }
 };
 export default DialogPromise;

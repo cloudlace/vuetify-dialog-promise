@@ -4,10 +4,11 @@ A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuet
 
 ## Major and minor version history
 
-* Version ^1.0.0: requires Vuetify ^1.5.0
-* Version ^2.0.0: requires Vuetify ^2.0.0
+* Version ^2.2.0: no longer uses `snackbarParent` property (snackbars mounted in calling component instance)
 * Version ^2.1.0: accepts `theme` property / config param (see
   [Vuetify theme](https://vuetifyjs.com/en/customization/theme))
+* Version ^2.0.0: requires Vuetify ^2.0.0
+* Version ^1.0.0: requires Vuetify ^1.5.0
 
 ## Description
 
@@ -68,9 +69,6 @@ All of these are optional and have reasonable defaults:
     - Snackbar duration in milliseconds
 * `dialogMaxWidth {integer}` 
     - Max width of dialog in pixels
-* `snackbarParent {string}` 
-    - ID of parent node in which the snackbars are mounted, default is `"app"`. This should usually refer to the `v-app`
-    instance. If the snackbars are mounted outside it, their CSS styling will not be applied as intended.
 * `theme {Object}`
     - [Vuetify theme](https://vuetifyjs.com/en/customization/theme) applied to dialogs
 

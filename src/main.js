@@ -19,7 +19,7 @@ function _getLocale()
     return locale;
 }
 
-Vue.use( DialogPromise, { snackbarParent : "app", locale : _getLocale() } );
+Vue.use( DialogPromise, { locale : _getLocale() } );
 Vue.config.productionTip = false;
 new Vue( {
     vuetify,
