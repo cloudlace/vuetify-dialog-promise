@@ -1,4 +1,5 @@
 module.exports = {
+    transpileDependencies : [ "vue-i18n", "vuetify" ],
     chainWebpack : config =>
     {
         if( process.env.NODE_ENV === 'test' )
