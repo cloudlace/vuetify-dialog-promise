@@ -20,7 +20,9 @@ let vue;
  * text : {string},
  * acceptText : {string}
  * cancelText : {string},
- * theme : {Object}         Vuetify theme, see https://vuetifyjs.com/en/customization/theme
+ * theme : {Object}             Vuetify theme, see https://vuetifyjs.com/en/customization/theme
+ * snackbarParent : {string?}   If provided, snackbars will be mounted under the element with this ID, else under the
+ *                              node of the caller element.
  *
  * @param type {string<"alert","confirm","prompt">}
  * @param message {string|Object}
@@ -95,7 +97,8 @@ function _showSnackbar( color, message )
     const sbar = new _SimpleSnackbar( {
         propsData : _message
     } );
-    const dNode = this.$vnode.elm.appendChild( document.createElement( "div" ) );
+    const pNode = defaults.snackbarParent ? document.getElementById( defaults.snackbarParent ) : this.$vnode.elm;
+    const dNode =   pNode.appendChild( document.createElement( "div" ) );
     sbar.$mount( dNode );
     sbar.show();
     sbar.$on( "close", () =>
