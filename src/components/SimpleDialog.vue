@@ -8,7 +8,7 @@
           <h3>{{ message.title }}</h3>
         </v-card-title>
         <v-card-text>
-          {{ message.text }}
+          <div class="vdp-message">{{ message.text }}</div>
           <v-text-field ref="prompt" v-if="type === 'prompt'" :type="message.type || 'text'" v-model="user_input" @keydown="checkSubmit"></v-text-field>
         </v-card-text>
         <v-card-actions>
@@ -75,5 +75,7 @@
 </script>
 
 <style scoped>
-
+  .vdp-message {
+    white-space: pre-wrap;
+  }
 </style>

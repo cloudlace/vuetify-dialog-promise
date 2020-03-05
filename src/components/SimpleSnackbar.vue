@@ -8,7 +8,7 @@
       :timeout="snackbarTimeout"
       :top="snackbarY === 'top'"
   >
-    {{ text }}
+    <span class="vdp-message">{{ text }}</span>
     <v-btn
         text
         :ripple="false"
@@ -56,5 +56,7 @@
 </script>
 
 <style scoped>
-
+  .vdp-message {
+    white-space: pre-wrap;
+  }
 </style>

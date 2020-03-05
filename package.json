@@ -19,21 +19,21 @@
   ],
   "dependencies": {
     "vue": "^2.6.11",
-    "vue-i18n": "^8.15.3",
-    "vuetify": "^2.2.3"
+    "vue-i18n": "^8.15.4",
+    "vuetify": "^2.2.15"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.1",
     "@vue/cli-plugin-unit-mocha": "^3.12.1",
     "@vue/cli-service": "^3.12.1",
-    "@vue/test-utils": "^1.0.0-beta.30",
+    "@vue/test-utils": "^1.0.0-beta.31",
     "chai": "^4.1.2",
     "fibers": "^4.0.2",
-    "less": "^3.10.3",
+    "less": "^3.11.1",
     "less-loader": "^4.1.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "null-loader": "^3.0.0",
-    "sass": "^1.24.4",
+    "sass": "^1.26.2",
     "sass-loader": "^7.3.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.1",

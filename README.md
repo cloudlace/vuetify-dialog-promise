@@ -43,6 +43,8 @@ Adds the following methods to the Vue instance:
 
 * Button labels localised to a large variety of languages (pull requests welcome)
 * Allows you to inject your own button labels, overriding the defaults
+* Dialogue and snackbar messages are plain text only: markup is escaped to keep it XSS-safe. However, paragraph breaks
+can be added with newline '\\n' characters in the message.
 * Various features of the dialogues and snackbars are configurable with initialisation properties (e.g. dialog max 
 width, snackbar location, colour, duration)
 

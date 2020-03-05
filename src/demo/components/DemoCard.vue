@@ -1,14 +1,14 @@
 <template>
   <v-flex d-inline-flex ma-3>
-    <v-card width="500" height="295">
+    <v-card width="500">
       <v-card-title>
         <h2>${{ type }}( message )</h2>
       </v-card-title>
       <v-card-text>
-        <v-responsive height="145">
+        <v-responsive>
           <p>{{ description }}</p>
           <p><code>${{ type }}( message )<span v-if="isPromise">.then( result => handler )</span></code></p>
-          <v-text-field v-model="text" label="Message (text)"></v-text-field>
+          <v-textarea outlined auto-grow v-model="text" label="Message (text)"></v-textarea>
         </v-responsive>
       </v-card-text>
       <v-card-actions>
