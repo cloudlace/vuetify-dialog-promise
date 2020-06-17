@@ -25,7 +25,7 @@
                   v-model="newLocale" class="ma-2" style="width:75px"></v-select>
       </v-toolbar-items>
     </v-app-bar>
-    <v-content app>
+    <v-main>
       <info-card v-if="shown === 'info'"></info-card>
       <v-container v-if="shown === 'demo'">
         <v-layout align-center justify-center>
@@ -104,7 +104,7 @@
 
         </v-layout>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 
 </template>

@@ -1,22 +1,17 @@
 <template>
-  <v-snackbar
-      v-model="shown"
+  <v-btn
+      :style="`height:auto;position:fixed;${snackbarY === 'bottom' ? 'bottom' : 'top' }:10px;${snackbarX === 'left' ? 'left' : 'right' }:10px;z-index:99999`"
       :color="color"
       :bottom="snackbarY === 'bottom'"
       :left="snackbarX === 'left'"
       :right="snackbarX === 'right'"
       :timeout="snackbarTimeout"
       :top="snackbarY === 'top'"
+      class="pa-3"
+      @click="close()"
   >
     <span class="vdp-message">{{ text }}</span>
-    <v-btn
-        text
-        :ripple="false"
-        @click="close()"
-    >
-      {{ closeText }}
-    </v-btn>
-  </v-snackbar>
+  </v-btn>
 </template>
 
 <script>
@@ -49,7 +44,7 @@
             close()
             {
                 this.shown = false;
-                setTimeout( () => this.$emit( "close" ), 500 );
+                setTimeout( () => this.$emit( "close" ), 100 );
             }
         }
     }
@@ -58,5 +53,8 @@
 <style scoped>
   .vdp-message {
     white-space: pre-wrap;
+    text-transform: none;
+    font-weight: normal;
+    letter-spacing: 0;
   }
 </style>

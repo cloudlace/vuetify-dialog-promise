@@ -98,11 +98,11 @@ function _showSnackbar( color, message )
         propsData : _message
     } );
     const pNode = defaults.snackbarParent ? document.getElementById( defaults.snackbarParent ) : this.$vnode.elm;
-    const dNode =   pNode.appendChild( document.createElement( "div" ) );
-    sbar.$mount( dNode );
-    sbar.show();
+    sbar.$mount();
+    pNode.appendChild( sbar.$el );
     sbar.$on( "close", () =>
     {
+        pNode.removeChild( sbar.$el );
         sbar.$destroy();
     } );
 }
