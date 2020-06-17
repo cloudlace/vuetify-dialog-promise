@@ -1,6 +1,6 @@
 {
   "name": "vuetify-dialog-promise",
-  "version": "2.3.0",
+  "version": "2.2.4",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
