@@ -100,12 +100,16 @@ function _showSnackbar( color, message )
     };
     Object.assign( _message, defaults, message );
     const pos = {
+        height: 0,
+        width: 0,
         top_left : 0,
         top_right : 0,
+        top_center : 0,
         bottom_left : 0,
         bottom_right : 0,
-        snackbar_x : _message.snackbarX,
-        snackbar_y : _message.snackbarY
+        bottom_center : 0,
+        snackbar_x : _message.snackbarX || 'right',
+        snackbar_y : _message.snackbarY || 'top'
     };
     snackbars.push( pos );
     _message.position = pos;
@@ -134,7 +138,9 @@ function _showSnackbar( color, message )
  */
 function _addBar( sbar, pos )
 {
-    pos.height = sbar.$el.getBoundingClientRect().height;
+    const r = sbar.$el.getBoundingClientRect();
+    pos.height = r.height;
+    pos.width = r.width;
     _computeOffsets();
 }
 
@@ -148,34 +154,15 @@ function _computeOffsets()
     const offsets = {
         top_left : 0,
         top_right : 0,
+        top_center : 0,
         bottom_left : 0,
-        bottom_right : 0
+        bottom_right : 0,
+        bottom_center : 0
     }
     for( let i = 0; i < snackbars.length; i++ )
     {
         const snackbar = snackbars[ i ];
-        if( snackbar.snackbar_y === "top" )
-        {
-            if( snackbar.snackbar_x === "left" )
-            {
-                offsets.top_left += ( snackbar.height + 10 );
-            }
-            else
-            {
-                offsets.top_right += ( snackbar.height + 10 );
-            }
-        }
-        else
-        {
-            if( snackbar.snackbar_x === "left" )
-            {
-                offsets.bottom_left += ( snackbar.height + 10 );
-            }
-            else
-            {
-                offsets.bottom_right += ( snackbar.height + 10 );
-            }
-        }
+        offsets[ `${snackbar.snackbar_y}_${snackbar.snackbar_x}` ] += snackbar.height + 10;
         Object.assign( snackbar, offsets );
     }
 }

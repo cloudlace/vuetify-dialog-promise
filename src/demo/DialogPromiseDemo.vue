@@ -79,7 +79,7 @@
                     </v-flex>
                     <v-flex d-inline-flex ma-2 style="width: 120px">
                       <v-select v-model="defaults.snackbarX" label="Horizontal position (snackbarX)"
-                                :items="[ 'left', 'right' ]"></v-select>
+                                :items="[ 'left', 'right', 'center' ]"></v-select>
                     </v-flex>
                     <v-flex d-inline-flex ma-2 style="width: 120px">
                       <v-select v-model="defaults.snackbarY" label="Vertical position (snackbarY)"
