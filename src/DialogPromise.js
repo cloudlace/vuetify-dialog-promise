@@ -12,6 +12,16 @@ const defaults = {
  * Vue instance controlling i18n.
  */
 let vue;
+
+/**
+ * Registry of snackbars at different corners so we can display several.
+ */
+const snackbars = {
+    top_left : 0,
+    top_right : 0,
+    bottom_left : 0,
+    bottom_right : 0
+}
 /**
  * Show a dialog of type "alert", "confirm", or "prompt." Returned promise is resolved with the dialog result when the
  * user dismisses or completes it. Message can be a string or an Object with the following properties:
@@ -94,18 +104,50 @@ function _showSnackbar( color, message )
         color : color
     };
     Object.assign( _message, defaults, message );
+    _message.snackbars = { ...snackbars };
     const sbar = new _SimpleSnackbar( {
         propsData : _message
     } );
     const pNode = defaults.snackbarParent ? document.getElementById( defaults.snackbarParent ) : this.$vnode.elm;
     sbar.$mount();
     pNode.appendChild( sbar.$el );
+    _countBar( _message, sbar, 1 )
     sbar.$on( "close", () =>
     {
+        _countBar( _message, sbar,-1 );
         pNode.removeChild( sbar.$el );
         sbar.$destroy();
     } );
 }
+
+function _countBar( message, sbar, i )
+{
+    const height = sbar.$el.getBoundingClientRect().height;
+    if( message.snackbarY === "top" )
+    {
+        if( message.snackbarX === "left" )
+        {
+            snackbars.top_left += i * ( height + 10 );
+        }
+        else
+        {
+            snackbars.top_right += i * ( height + 10 );
+        }
+    }
+    else
+    {
+        if( message.snackbarX === "left" )
+        {
+            snackbars.bottom_left += i * ( height + 10 );
+        }
+        else
+        {
+            snackbars.bottom_right += i * ( height + 10 );
+        }
+    }
+    return snackbars;
+}
+
 
 /**
  * Raise a snackbar with the "info" colour.

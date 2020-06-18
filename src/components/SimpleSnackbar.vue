@@ -1,17 +1,21 @@
 <template>
-  <v-btn
-      :style="`height:auto;position:fixed;${snackbarY === 'bottom' ? 'bottom' : 'top' }:10px;${snackbarX === 'left' ? 'left' : 'right' }:10px;z-index:99999`"
+  <v-chip
+      label
+      close
+      close-icon="mdi-close"
+      :style="`height:auto;position:fixed;${snackbarY === 'bottom' ? 'bottom' : 'top' }:${y_offset}px;${snackbarX === 'left' ? 'left' : 'right' }:${x_offset}px;z-index:99999`"
       :color="color"
       :bottom="snackbarY === 'bottom'"
       :left="snackbarX === 'left'"
       :right="snackbarX === 'right'"
       :timeout="snackbarTimeout"
       :top="snackbarY === 'top'"
-      class="pa-3"
       @click="close()"
+      @click:close="close()"
+      class="pa-3"
   >
     <span class="vdp-message">{{ text }}</span>
-  </v-btn>
+  </v-chip>
 </template>
 
 <script>
@@ -21,30 +25,31 @@
             snackbarX : String,
             snackbarY : String,
             color : String,
+            snackbars : Object,
             snackbarTimeout : Number,
-            closeText : String,
             text : String
         },
-        data()
-        {
-            return {
-                shown : true
+        computed : {
+            y_offset()
+            {
+                return 10 + this.snackbars[ this.snackbarY + '_' + this.snackbarX ];
+            },
+            x_offset()
+            {
+                return 10;
             }
         },
-        methods :
-        {
-            show()
-            {
-                this.shown = true;
-                if( this.timeout )
-                {
-                    setTimeout( () => this.$emit( "close" ), this.timeout + 300 );
-                }
-            },
+        methods : {
             close()
             {
-                this.shown = false;
-                setTimeout( () => this.$emit( "close" ), 100 );
+                this.$emit( "close" );
+            }
+        },
+        mounted()
+        {
+            if( this.snackbarTimeout )
+            {
+                setTimeout( () => this.$emit( "close" ), this.snackbarTimeout );
             }
         }
     }
@@ -53,8 +58,5 @@
 <style scoped>
   .vdp-message {
     white-space: pre-wrap;
-    text-transform: none;
-    font-weight: normal;
-    letter-spacing: 0;
   }
 </style>
