@@ -4,6 +4,8 @@ A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuet
 
 ## Major and minor version history
 
+* Version ^2.4.0: switches to v-chip for snackbars because they're more suitable, and makes it possible to display 
+multiple snackbars simultaneously.
 * Version ^2.3.0: switches to v-btn for snackbars because a Vuetify update broke programmatic creation of non-absolute
 snackbars. Also removes the close button; now snackbars can be closed by clicking on them.
 * Version ^2.2.0: no longer uses `snackbarParent` property (snackbars mounted in calling component instance)

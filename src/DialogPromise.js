@@ -16,12 +16,7 @@ let vue;
 /**
  * Registry of snackbars at different corners so we can display several.
  */
-const snackbars = {
-    top_left : 0,
-    top_right : 0,
-    bottom_left : 0,
-    bottom_right : 0
-}
+const snackbars = []
 /**
  * Show a dialog of type "alert", "confirm", or "prompt." Returned promise is resolved with the dialog result when the
  * user dismisses or completes it. Message can be a string or an Object with the following properties:
@@ -104,48 +99,85 @@ function _showSnackbar( color, message )
         color : color
     };
     Object.assign( _message, defaults, message );
-    _message.snackbars = { ...snackbars };
+    const pos = {
+        top_left : 0,
+        top_right : 0,
+        bottom_left : 0,
+        bottom_right : 0,
+        snackbar_x : _message.snackbarX,
+        snackbar_y : _message.snackbarY
+    };
+    snackbars.push( pos );
+    _message.position = pos;
     const sbar = new _SimpleSnackbar( {
         propsData : _message
     } );
     const pNode = defaults.snackbarParent ? document.getElementById( defaults.snackbarParent ) : this.$vnode.elm;
     sbar.$mount();
     pNode.appendChild( sbar.$el );
-    _countBar( _message, sbar, 1 )
+    _addBar( sbar, pos );
     sbar.$on( "close", () =>
     {
-        _countBar( _message, sbar,-1 );
         pNode.removeChild( sbar.$el );
         sbar.$destroy();
+        snackbars.splice( snackbars.indexOf( pos ), 1 );
+        _computeOffsets();
     } );
 }
 
-function _countBar( message, sbar, i )
+/**
+ * Add a bar and recompute offsets.
+ *
+ * @param sbar
+ * @param pos
+ * @private
+ */
+function _addBar( sbar, pos )
 {
-    const height = sbar.$el.getBoundingClientRect().height;
-    if( message.snackbarY === "top" )
+    pos.height = sbar.$el.getBoundingClientRect().height;
+    _computeOffsets();
+}
+
+/**
+ * Recompute position of each bar.
+ *
+ * @private
+ */
+function _computeOffsets()
+{
+    const offsets = {
+        top_left : 0,
+        top_right : 0,
+        bottom_left : 0,
+        bottom_right : 0
+    }
+    for( let i = 0; i < snackbars.length; i++ )
     {
-        if( message.snackbarX === "left" )
+        const snackbar = snackbars[ i ];
+        if( snackbar.snackbar_y === "top" )
         {
-            snackbars.top_left += i * ( height + 10 );
+            if( snackbar.snackbar_x === "left" )
+            {
+                offsets.top_left += ( snackbar.height + 10 );
+            }
+            else
+            {
+                offsets.top_right += ( snackbar.height + 10 );
+            }
         }
         else
         {
-            snackbars.top_right += i * ( height + 10 );
+            if( snackbar.snackbar_x === "left" )
+            {
+                offsets.bottom_left += ( snackbar.height + 10 );
+            }
+            else
+            {
+                offsets.bottom_right += ( snackbar.height + 10 );
+            }
         }
+        Object.assign( snackbar, offsets );
     }
-    else
-    {
-        if( message.snackbarX === "left" )
-        {
-            snackbars.bottom_left += i * ( height + 10 );
-        }
-        else
-        {
-            snackbars.bottom_right += i * ( height + 10 );
-        }
-    }
-    return snackbars;
 }
 
 

@@ -12,8 +12,7 @@
       :top="snackbarY === 'top'"
       @click="close()"
       @click:close="close()"
-      class="pa-3"
-  >
+      class="pa-3">
     <span class="vdp-message">{{ text }}</span>
   </v-chip>
 </template>
@@ -25,14 +24,14 @@
             snackbarX : String,
             snackbarY : String,
             color : String,
-            snackbars : Object,
+            position : Object,
             snackbarTimeout : Number,
             text : String
         },
         computed : {
             y_offset()
             {
-                return 10 + this.snackbars[ this.snackbarY + '_' + this.snackbarX ];
+                return 10 + this.position[ this.snackbarY + '_' + this.snackbarX ] - this.position.height;
             },
             x_offset()
             {
