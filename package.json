@@ -32,7 +32,7 @@
     "fibers": "^4.0.2",
     "less": "^3.11.1",
     "less-loader": "^4.1.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "null-loader": "^3.0.0",
     "sass": "^1.26.2",
     "sass-loader": "^7.3.1",
