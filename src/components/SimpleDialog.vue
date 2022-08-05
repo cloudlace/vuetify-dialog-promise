@@ -8,8 +8,8 @@
           <h3>{{ message.title }}</h3>
         </v-card-title>
         <v-card-text>
-          <div class="vdp-message">{{ message.text }}</div>
-          <v-text-field ref="prompt" v-if="type === 'prompt'" :type="message.type || 'text'" v-model="user_input" @keydown="checkSubmit"></v-text-field>
+          <div class="vdp-message text--black">{{ message.text }}</div>
+          <v-text-field ref="prompt" v-if="type === 'prompt'" :type="message.type || 'text'" v-model="user_input" @keydown="checkSubmit" @focus="$event.target.select()"></v-text-field>
         </v-card-text>
         <v-card-actions>
           <v-btn v-on:click="cancel" v-if="type !== 'alert'">{{ message.cancelText }}</v-btn>
@@ -33,7 +33,7 @@
         {
             return {
                 shown : false,
-                user_input : ""
+                user_input : this.message.defaultValue || ''
             }
         },
         methods : {

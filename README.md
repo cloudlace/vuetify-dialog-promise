@@ -4,6 +4,8 @@ A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuet
 
 ## Major and minor version history
 
+* Version ^2.5.0: allows you to specify `message.defaultValue` in prompts, switches to v-card for snackbars, and updates 
+dependencies
 * Version ^2.4.0: switches to v-chip for snackbars because they're more suitable, and makes it possible to display 
 multiple snackbars simultaneously.
 * Version ^2.3.0: switches to v-btn for snackbars because a Vuetify update broke programmatic creation of non-absolute
@@ -32,7 +34,8 @@ Adds the following methods to the Vue instance:
     - A confirmation dialog. Returns Promise, resolved if the user accepts it, rejected if the user cancels it.
 * `$prompt( message )` 
     - A prompt dialog. Returns Promise, resolved with user input if user accepts it, rejected if the user cancels it.
-* `$inform( message )` 
+    - An additional property `message.defaultValue` may be passed to the prompt
+* `$inform( message )`
     - Raises a snackbar notification in the default colour.
     - `message` can be a string or an object with properties `{ text, color?, closeText?, snackbarX?, snackbarY?,
     snackbarTimeout? }` where `text` becomes the message to display, and the other properties control the appearance

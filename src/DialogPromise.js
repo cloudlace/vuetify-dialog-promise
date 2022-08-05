@@ -258,6 +258,22 @@ const DialogPromise = {
         Vue.prototype.$inform = _inform;
         Vue.prototype.$warn = _warn;
         Vue.prototype.$error = _error;
+        if( document && document.head && !document._vuetify_dialog_promise_styles )
+        {
+            const el = document.createElement( "style" );
+            el.innerText = ".vdp-message {\n" +
+                "  white-space: pre-wrap;\n" +
+                "  font-size: 14px;\n" +
+                "}\n" +
+                "\n" +
+                ".vdp-fake-close-icon {\n" +
+                "  font-size: 18px !important;\n" +
+                "  padding-left: 8px;\n" +
+                "  margin-top: -4px;\n" +
+                "}\n";
+            document.head.appendChild( el );
+            document._vuetify_dialog_promise_styles = el;
+        }
     }
 };
 export default DialogPromise;
