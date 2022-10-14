@@ -1,17 +1,12 @@
-import Vue from 'vue';
-import VueI18n from "vue-i18n";
 import dlogI18n from "./i18n";
 import SimpleDialog from './components/SimpleDialog';
 import SimpleSnackbar from './components/SimpleSnackbar';
+import { createI18n } from "vue-i18n";
+import { createApp, ref } from "vue";
+import vuetify from './plugins/vuetify';
 
-const _SimpleDialog = Vue.extend( SimpleDialog );
-const _SimpleSnackbar = Vue.extend( SimpleSnackbar );
 const defaults = {
 };
-/**
- * Vue instance controlling i18n.
- */
-let vue;
 
 /**
  * Registry of snackbars at different corners so we can display several.
@@ -39,6 +34,7 @@ function _showDialog( type, message )
     return new Promise( ( resolve, reject ) =>
     {
         let dlog;
+        let mountEl;
         new Promise( _resolve =>
         {
             if( typeof message === "string" )
@@ -50,17 +46,25 @@ function _showDialog( type, message )
             }
             const _message = {};
             Object.assign( _message, defaults, message );
-            dlog = new _SimpleDialog( {
-                propsData : {
+
+            dlog = createApp(
+                { extends: SimpleDialog },
+                {
                     type : type,
                     message : _message,
                     resolve : _resolve
                 }
-            } );
-            dlog.$mount();
+            );
+            dlog.use(vuetify);
+
+            mountEl = document.createElement('div');
+            dlog.mount(mountEl);
         } ).then( result =>
         {
-            setTimeout( () => dlog.$destroy, 300 );
+            setTimeout( () => {
+                dlog.unmount();
+                mountEl.remove();
+            }, 300 );
             if( result === false )
             {
                 reject();
@@ -99,7 +103,7 @@ function _showSnackbar( color, message )
         color : color
     };
     Object.assign( _message, defaults, message );
-    const pos = {
+    const pos = ref({
         height: 0,
         width: 0,
         top_left : 0,
@@ -110,23 +114,31 @@ function _showSnackbar( color, message )
         bottom_center : 0,
         snackbar_x : _message.snackbarX || 'right',
         snackbar_y : _message.snackbarY || 'top'
-    };
-    snackbars.push( pos );
+    });
+    snackbars.push( pos.value );
     _message.position = pos;
-    const sbar = new _SimpleSnackbar( {
-        propsData : _message
-    } );
-    const pNode = defaults.snackbarParent ? document.getElementById( defaults.snackbarParent ) : this.$vnode.elm;
-    sbar.$mount();
-    pNode.appendChild( sbar.$el );
-    _addBar( sbar, pos );
-    sbar.$on( "close", () =>
-    {
-        pNode.removeChild( sbar.$el );
-        sbar.$destroy();
-        snackbars.splice( snackbars.indexOf( pos ), 1 );
-        _computeOffsets();
-    } );
+
+    const pNode = defaults.snackbarParent ? document.getElementById( defaults.snackbarParent ) : this.$el;
+    const mountEl = document.createElement('div');
+    pNode.appendChild(mountEl);
+
+    const sbar = createApp(
+        {extends: SimpleSnackbar},
+        {
+            ..._message,
+            onClose() {
+                pNode.removeChild( mountEl );
+                sbar.unmount();
+                snackbars.splice( snackbars.indexOf( pos.value ), 1 );
+                _computeOffsets();
+            }
+        }
+    );
+
+    sbar.use(vuetify);
+    sbar.mount(mountEl);
+
+    _addBar( mountEl.firstChild, pos.value );
 }
 
 /**
@@ -136,9 +148,9 @@ function _showSnackbar( color, message )
  * @param pos
  * @private
  */
-function _addBar( sbar, pos )
+function _addBar( sbarEl, pos )
 {
-    const r = sbar.$el.getBoundingClientRect();
+    const r = sbarEl.getBoundingClientRect();
     pos.height = r.height;
     pos.width = r.width;
     _computeOffsets();
@@ -226,38 +238,42 @@ const DialogPromise = {
      * - snackbarX : {"left"|"right"|"center"} - Snackbar position, default "right"
      * - snackbarY : {"top"|"bottom"} - Snackbar vertical position, default "top"
      * - snackbarTimeout : {integer} - Snackbar duration in millis, default 3000
-     * - dialogMaxWidth : {integer} - Dialog max width in pixels, default 500
-     * - theme : {Object} - Vuetify theme, see https://vuetifyjs.com/en/customization/theme (default is default theme)
+     * - dialogMaxWidth : {integer} - Dialog max width in pixels, default 500
+     * - theme : {Object} - Vuetify theme, see https://vuetifyjs.com/en/customization/theme (default is default theme)
      *
      * @param Vue {Vue}
      * @param options {object}
      */
-    install( Vue, options )
+    install( app, options )
     {
         options = options || {};
-        Vue.use( VueI18n );
-        const i18n = new VueI18n( {
+
+        const i18n = createI18n({
             locale : options.locale || "en",
             fallbackLocale : "en",
             messages : dlogI18n
-        } );
-        vue = new Vue( { i18n } );
+        })
+
+        app.use(i18n);
+
         Object.assign( defaults, {
-            acceptText : vue.$t( "message.Accept" ),
-            cancelText : vue.$t( "message.Cancel" ),
-            closeText : vue.$t( "message.Close" ),
+            acceptText : i18n.global.t( "message.Accept" ),
+            cancelText : i18n.global.t( "message.Cancel" ),
+            closeText : i18n.global.t( "message.Close" ),
             snackbarX : "right",
             snackbarY : "top",
             snackbarTimeout : 3000,
             dialogMaxWidth : 500,
             theme : {}
         }, options );
-        Vue.prototype.$alert = _showDialog.bind( this, "alert" );
-        Vue.prototype.$confirm = _showDialog.bind( this, "confirm" );
-        Vue.prototype.$prompt = _showDialog.bind( this, "prompt" );
-        Vue.prototype.$inform = _inform;
-        Vue.prototype.$warn = _warn;
-        Vue.prototype.$error = _error;
+
+        app.config.globalProperties.$alert = _showDialog.bind( this, "alert" );
+        app.config.globalProperties.$confirm = _showDialog.bind( this, "confirm" );
+        app.config.globalProperties.$prompt = _showDialog.bind( this, "prompt" );
+        app.config.globalProperties.$inform = _inform;
+        app.config.globalProperties.$warn = _warn;
+        app.config.globalProperties.$error = _error;
+
         if( document && document.head && !document._vuetify_dialog_promise_styles )
         {
             const el = document.createElement( "style" );
