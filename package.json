@@ -18,17 +18,17 @@
   ],
   "dependencies": {
     "color": "^4.2.3",
-    "vue": "^2.6.11",
-    "vue-i18n": "^8.24.2",
-    "vuetify": "^2.4.0"
+    "vue": "^3.1.0",
+    "vue-i18n": "^9.2.2",
+    "vuetify": "^3.0.0-beta.0"
   },
   "devDependencies": {
-    "@vue/cli-service": "^4.5.0",
+    "@vue/cli-service": "~5.0.8",
     "sass": "^1.32.0",
     "sass-loader": "^10.0.0",
-    "vue-cli-plugin-vuetify": "~2.3.1",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.4.3"
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "@vue/compiler-sfc": "^3.1.0",
+    "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   },
   "postcss": {
     "plugins": {

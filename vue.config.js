@@ -8,5 +8,10 @@ module.exports = {
             sassRule.uses.clear();
             sassRule.use( 'null-loader' ).loader( 'null-loader' );
         }
+    },
+    pluginOptions: {
+        vuetify: {
+            // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+        }
     }
 };

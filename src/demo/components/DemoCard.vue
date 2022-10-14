@@ -1,5 +1,5 @@
 <template>
-  <v-flex d-inline-flex ma-3>
+  <v-col d-inline-flex ma-3>
     <v-card width="500">
       <v-card-title>
         <h2>${{ type }}( message )</h2>
@@ -17,7 +17,7 @@
         <v-btn @click="raiseWithDefaults()">Plain text</v-btn>
       </v-card-actions>
     </v-card>
-  </v-flex>
+  </v-col>
 
 </template>
 

@@ -44,7 +44,7 @@ export default {
   computed : {
     visibility()
     {
-      if( this.position.width && this.position.height )
+      if( this.position.value.width && this.position.value.height )
       {
         return "visible";
       }
@@ -58,7 +58,7 @@ export default {
       switch( this.snackbarX )
       {
         case "center" :
-          return `left:50%;margin-left:${ this.position.width / -2 }px`
+          return `left:50%;margin-left:${ this.position.value.width / -2 }px`
         case "left" :
           return "left:10px";
         case "right" :
@@ -69,7 +69,7 @@ export default {
     },
     y_position()
     {
-      return `${ this.snackbarY }:${ 10 + this.position[ this.snackbarY + '_' + this.snackbarX ] - this.position.height }px`;
+      return `${ this.snackbarY }:${ 10 + this.position.value[ this.snackbarY + '_' + this.snackbarX ] - this.position.value.height }px`;
     }
   },
   methods : {

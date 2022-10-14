@@ -9,14 +9,12 @@
       <v-toolbar-items>
         <v-btn class="hidden-xs-only"
                text
-               :input-value="shown === 'demo'"
                @click="shown = 'demo'"
                active-class="default-class grey darken-1">
           Playground
         </v-btn>
         <v-btn class="hidden-xs-only"
                text
-               :input-value="shown === 'info'"
                @click="shown = 'info'"
                active-class="default-class grey darken-1">
           About
@@ -28,36 +26,35 @@
     <v-main>
       <info-card v-if="shown === 'info'"></info-card>
       <v-container v-if="shown === 'demo'">
-        <v-layout align-center justify-center>
-          <v-flex>
-            <v-flex ma-3 d-inline-flex>
+        <v-row>
+            <v-col ma-3 d-inline-flex>
               <v-card width="500" height="295">
                 <v-card-title>
                   <h2>Dialog properties</h2>
                 </v-card-title>
                 <v-card-text>
-                  <v-flex>
-                    <v-flex d-inline-flex ma-2>
+                  <v-row style="width: 100%" align-center justify-center>
+                    <v-col cols="6" d-inline-flex ma-2>
                       <v-text-field v-model="defaults.title" label="Dialog title (title)"></v-text-field>
-                    </v-flex>
-                    <v-flex d-inline-flex ma-2>
+                    </v-col>
+                    <v-col cols="6" d-inline-flex ma-2>
                       <v-text-field v-model="defaults.cancelText"
                                     label="Cancel button label (cancelText)"></v-text-field>
-                    </v-flex>
-                    <v-flex d-inline-flex ma-2>
+                    </v-col>
+                    <v-col cols="6" d-inline-flex ma-2>
                       <v-text-field v-model="defaults.acceptText"
                                     label="Accept button label (acceptText)"></v-text-field>
-                    </v-flex>
-                    <v-flex d-inline-flex ma-2>
+                    </v-col>
+                    <v-col cols="6" d-inline-flex ma-2>
                       <v-text-field v-model="defaults.dialogMaxWidth" type="number"
                                     label="Max width (dialogMaxWidth)"></v-text-field>
-                    </v-flex>
-                  </v-flex>
+                    </v-col>
+                  </v-row>
                 </v-card-text>
               </v-card>
-            </v-flex>
+            </v-col>
 
-            <v-flex ma-3 d-inline-flex>
+            <v-col ma-3 d-inline-flex>
               <v-card width="500" height="295">
                 <v-card-title>
                   <h2>
@@ -65,31 +62,31 @@
                   </h2>
                 </v-card-title>
                 <v-card-text>
-                  <v-flex>
-                    <v-flex d-inline-flex ma-2 style="width: 120px">
+                  <v-row>
+                    <v-col cols="4" d-inline-flex ma-2 style="width: 120px">
                       <v-text-field v-model="defaults.closeText"
                                     label="Close button label (closeText)"></v-text-field>
-                    </v-flex>
-                    <v-flex d-inline-flex ma-2 style="width: 120px">
+                    </v-col>
+                    <v-col cols="4" d-inline-flex ma-2 style="width: 120px">
                       <v-text-field v-model="defaults.snackbarTimeout" type="number"
                                     label="Timeout (snackbarTimeout)"></v-text-field>
-                    </v-flex>
-                    <v-flex d-inline-flex ma-2 style="width: 120px">
+                    </v-col>
+                    <v-col cols="4" d-inline-flex ma-2 style="width: 120px">
                       <v-text-field v-model="defaults.color"
                                     label="Color, overrides setting from inform/warn/error (color)"></v-text-field>
-                    </v-flex>
-                    <v-flex d-inline-flex ma-2 style="width: 120px">
+                    </v-col>
+                    <v-col cols="4" d-inline-flex ma-2 style="width: 120px">
                       <v-select v-model="defaults.snackbarX" label="Horizontal position (snackbarX)"
                                 :items="[ 'left', 'right', 'center' ]"></v-select>
-                    </v-flex>
-                    <v-flex d-inline-flex ma-2 style="width: 120px">
+                    </v-col>
+                    <v-col cols="4" d-inline-flex ma-2 style="width: 120px">
                       <v-select v-model="defaults.snackbarY" label="Vertical position (snackbarY)"
                                 :items="[ 'top', 'bottom' ]"></v-select>
-                    </v-flex>
-                  </v-flex>
+                    </v-col>
+                  </v-row>
                 </v-card-text>
               </v-card>
-            </v-flex>
+            </v-col>
 
             <demo-card v-for="demo in demos"
                        :isPromise="demo.isPromise"
@@ -101,9 +98,8 @@
             </demo-card>
 
 
-          </v-flex>
 
-        </v-layout>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
