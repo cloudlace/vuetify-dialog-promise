@@ -19,7 +19,7 @@
                active-class="default-class grey darken-1">
           About
         </v-btn>
-        <v-select dark background-color="grey darken-2" text solo :items="locales" v-on:input="setLocale()"
+        <v-select dark background-color="grey darken-2" text solo :items="locales" @update:model-value="setLocale()"
                   v-model="newLocale" class="ma-2" style="width:75px"></v-select>
       </v-toolbar-items>
     </v-app-bar>

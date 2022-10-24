@@ -254,8 +254,6 @@ const DialogPromise = {
             messages : dlogI18n
         })
 
-        app.use(i18n);
-
         Object.assign( defaults, {
             acceptText : i18n.global.t( "message.Accept" ),
             cancelText : i18n.global.t( "message.Cancel" ),
