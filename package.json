@@ -1,6 +1,6 @@
 {
   "name": "vuetify-dialog-promise",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "color": "^4.2.3",
-    "vue": "^2.6.11",
+    "vue": "^2.7.13",
     "vue-i18n": "^8.24.2",
     "vuetify": "^2.4.0"
   },

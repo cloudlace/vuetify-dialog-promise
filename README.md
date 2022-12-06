@@ -4,6 +4,7 @@ A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuet
 
 ## Major and minor version history
 
+* Version ^2.6.0: allows you to specify `message.href` in snackbars, causing the text to appear as a link to it
 * Version ^2.5.0: allows you to specify `message.defaultValue` in prompts, switches to v-card for snackbars, and updates 
 dependencies
 * Version ^2.4.0: switches to v-chip for snackbars because they're more suitable, and makes it possible to display 

@@ -11,7 +11,8 @@
       <tbody>
       <tr>
         <td>
-          <div :class="`vdp-message ${text_color}`">{{ text }}</div>
+          <a v-if="href" :href="href" :class="`vdp-message ${text_color}`">{{ text }}</a>
+          <div v-else :class="`vdp-message ${text_color}`">{{ text }}</div>
         </td>
         <td>
           <!-- Icons don't mount correctly in programmatically created cards so we do the fake icon like this. -->
@@ -33,7 +34,8 @@ export default {
     color : String,
     position : Object,
     snackbarTimeout : Number,
-    text : String
+    text : String,
+    href : String
   },
   data()
   {
@@ -101,6 +103,10 @@ export default {
 </script>
 
 <style>
+a.vdp-message {
+  text-decoration: underline;
+}
+
 .vdp-message {
   white-space: pre-wrap;
   font-size: 14px;

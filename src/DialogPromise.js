@@ -109,7 +109,8 @@ function _showSnackbar( color, message )
         bottom_right : 0,
         bottom_center : 0,
         snackbar_x : _message.snackbarX || 'right',
-        snackbar_y : _message.snackbarY || 'top'
+        snackbar_y : _message.snackbarY || 'top',
+        snackbar_href : _message.href
     };
     snackbars.push( pos );
     _message.position = pos;

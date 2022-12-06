@@ -86,6 +86,9 @@
                       <v-select v-model="defaults.snackbarY" label="Vertical position (snackbarY)"
                                 :items="[ 'top', 'bottom' ]"></v-select>
                     </v-flex>
+                    <v-flex d-inline-flex ma-2 style="width:120px">
+                      <v-text-field v-model="defaults.href" label="HREF (href)"/>
+                    </v-flex>
                   </v-flex>
                 </v-card-text>
               </v-card>
@@ -155,6 +158,7 @@ export default {
         error_text : "Something went badly wrong!",
         snackbarX : "left",
         snackbarY : "bottom",
+        href : undefined,
         color : "pink",
         snackbarTimeout : 1000,
         closeText : "Okay",
