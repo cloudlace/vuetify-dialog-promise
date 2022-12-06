@@ -88,7 +88,8 @@ export default {
           closeText : this.defaults.closeText,
           snackbarX : this.defaults.snackbarX,
           snackbarY : this.defaults.snackbarY,
-          color : this.defaults.color
+          color : this.defaults.color,
+          href : this.defaults.href
         } );
       }
     }

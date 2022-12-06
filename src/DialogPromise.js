@@ -122,6 +122,9 @@ function _showSnackbar( color, message )
     const mountEl = document.createElement('div');
     pNode.appendChild(mountEl);
 
+    console.log( "INFORM", _message )
+
+
     const sbar = createApp(
         {extends: SimpleSnackbar},
         {

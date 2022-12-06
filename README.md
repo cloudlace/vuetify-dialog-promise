@@ -3,7 +3,8 @@
 A Vue plugin with a Promise API for [Vuetify](https://www.npmjs.com/package/vuetify) dialogs and snackbar notifications.
 
 ## Major and minor version history
-
+* Version ^3.0.0: Vue 3 compatibility
+* Version ^2.6.0: allows you to specify `message.href` in snackbars, linking to it when clicking on the text
 * Version ^2.5.0: allows you to specify `message.defaultValue` in prompts, switches to v-card for snackbars, and updates 
 dependencies
 * Version ^2.4.0: switches to v-chip for snackbars because they're more suitable, and makes it possible to display 
