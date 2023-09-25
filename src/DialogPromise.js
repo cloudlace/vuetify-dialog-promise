@@ -1,12 +1,15 @@
+import { createVNode, ref, render } from 'vue';
+import { createI18n } from "vue-i18n";
 import dlogI18n from "./i18n";
 import SimpleDialog from './components/SimpleDialog';
 import SimpleSnackbar from './components/SimpleSnackbar';
-import { createI18n } from "vue-i18n";
-import { createApp, ref } from "vue";
-import vuetify from './plugins/vuetify';
 
 const defaults = {
 };
+/**
+ * App instance that dialogs & snackbar is supposed to be mounted on
+ */
+let appInstance;
 
 /**
  * Registry of snackbars at different corners so we can display several.
@@ -20,7 +23,7 @@ const snackbars = []
  * text : {string},
  * acceptText : {string}
  * cancelText : {string},
- * theme : {Object}             Vuetify theme, see https://vuetifyjs.com/en/customization/theme
+ * theme : {string}             Vuetify theme, see https://vuetifyjs.com/en/features/theme/
  * snackbarParent : {string?}   If provided, snackbars will be mounted under the element with this ID, else under the
  *                              node of the caller element.
  *
@@ -33,8 +36,6 @@ function _showDialog( type, message )
 {
     return new Promise( ( resolve, reject ) =>
     {
-        let dlog;
-        let mountEl;
         new Promise( _resolve =>
         {
             if( typeof message === "string" )
@@ -47,23 +48,19 @@ function _showDialog( type, message )
             const _message = {};
             Object.assign( _message, defaults, message );
 
-            dlog = createApp(
-                { extends: SimpleDialog },
-                {
-                    type : type,
-                    message : _message,
-                    resolve : _resolve
-                }
-            );
-            dlog.use(vuetify);
+            const vNode = createVNode(SimpleDialog, {
+                type: type,
+                message: _message,
+                resolve: _resolve
+            });
 
-            mountEl = document.createElement('div');
-            dlog.mount(mountEl);
+            vNode.appContext = appInstance._context;
+            render(vNode, appInstance._container.firstElementChild);
         } ).then( result =>
         {
+            
             setTimeout( () => {
-                dlog.unmount();
-                mountEl.remove();
+                render(null, appInstance._container.firstElementChild)
             }, 300 );
             if( result === false )
             {
@@ -113,7 +110,8 @@ function _showSnackbar( color, message )
         bottom_right : 0,
         bottom_center : 0,
         snackbar_x : _message.snackbarX || 'right',
-        snackbar_y : _message.snackbarY || 'top'
+        snackbar_y : _message.snackbarY || 'top',
+        snackbar_href : _message.href
     });
     snackbars.push( pos.value );
     _message.position = pos;
@@ -122,26 +120,19 @@ function _showSnackbar( color, message )
     const mountEl = document.createElement('div');
     pNode.appendChild(mountEl);
 
-    console.log( "INFORM", _message )
-
-
-    const sbar = createApp(
-        {extends: SimpleSnackbar},
-        {
-            ..._message,
-            onClose() {
-                pNode.removeChild( mountEl );
-                sbar.unmount();
-                snackbars.splice( snackbars.indexOf( pos.value ), 1 );
-                _computeOffsets();
-            }
+    const vNode = createVNode(SimpleSnackbar, {
+        ..._message,
+        onClose: () => {
+            pNode.removeChild(mountEl);
+            render(null, mountEl);
+            snackbars.splice( snackbars.indexOf( pos.value ), 1 );
+            _computeOffsets();
         }
-    );
+    });
 
-    sbar.use(vuetify);
-    sbar.mount(mountEl);
-
-    _addBar( mountEl.firstChild, pos.value );
+    vNode.appContext = appInstance._context
+    render(vNode, mountEl);
+    _addBar( mountEl.firstElementChild, pos.value );
 }
 
 /**
@@ -244,18 +235,21 @@ const DialogPromise = {
      * - dialogMaxWidth : {integer} - Dialog max width in pixels, default 500
      * - theme : {Object} - Vuetify theme, see https://vuetifyjs.com/en/customization/theme (default is default theme)
      *
-     * @param Vue {Vue}
+     * @param app {App<Element>}
      * @param options {object}
      */
     install( app, options )
     {
+        appInstance = app;
         options = options || {};
 
         const i18n = createI18n({
-            locale : options.locale || "en",
-            fallbackLocale : "en",
-            messages : dlogI18n
-        })
+            locale: options.locale || "en",
+            fallbackLocale: "en",
+            messages: dlogI18n
+        });
+
+        app.use(i18n);
 
         Object.assign( defaults, {
             acceptText : i18n.global.t( "message.Accept" ),
@@ -265,7 +259,7 @@ const DialogPromise = {
             snackbarY : "top",
             snackbarTimeout : 3000,
             dialogMaxWidth : 500,
-            theme : {}
+            theme: "light",
         }, options );
 
         app.config.globalProperties.$alert = _showDialog.bind( this, "alert" );

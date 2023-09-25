@@ -1,11 +1,12 @@
 {
   "name": "vuetify-dialog-promise",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-bundle": "vue-cli-service build --target lib --name VuetifyDialogPromise ./src/DialogPromise.js",
-    "test": "vue-cli-service test:unit"
+    "test": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
   },
   "main": "./dist/VuetifyDialogPromise.common.js",
   "files": [
@@ -18,16 +19,19 @@
   ],
   "dependencies": {
     "color": "^4.2.3",
-    "vue": "^3.1.0",
-    "vue-i18n": "^9.2.2",
+    "vue": "^3.3.4",
+    "vue-i18n": "^9.4.1",
     "vuetify": "^3.1.4"
   },
   "devDependencies": {
     "@vue/cli-service": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "eslint-plugin-vuetify": "^2.0.5",
     "sass": "^1.32.0",
-    "sass-loader": "^10.0.0",
+    "sass-loader": "^12.0.0",
     "vue-cli-plugin-vuetify": "~2.5.8",
-    "@vue/compiler-sfc": "^3.1.0",
     "webpack-plugin-vuetify": "^2.0.1"
   },
   "postcss": {

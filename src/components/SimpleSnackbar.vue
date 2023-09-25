@@ -40,7 +40,7 @@ export default {
   data()
   {
     return {
-      text_color : "text-white"
+      text_color : "white--text"
     };
   },
   computed : {
@@ -104,8 +104,9 @@ export default {
 
 <style>
 a.vdp-message {
-  text-decoration : underline
+  text-decoration: underline;
 }
+
 .vdp-message {
   white-space: pre-wrap;
   font-size: 14px;

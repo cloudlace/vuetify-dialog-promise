@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row align-center justify-center>
-      <v-col ma-3>
+    <v-layout align-center justify-center>
+      <v-row class="ma-3">
         <v-card max-width="800">
           <v-card-text>
             <p>
@@ -30,7 +30,7 @@
             <p>
               <code class="d-block">
     import DialogPromise from 'vuetify-dialog-promise';
-    Vue.use( DialogPromise, { 
+    Vue.use( DialogPromise, {
         locale : "en",
         acceptText : "My Default OK",
         cancelText : "My Default Cancel",
@@ -90,8 +90,8 @@
             </p>
           </v-card-text>
         </v-card>
-      </v-col>
-    </v-row>
+      </v-row>
+    </v-layout>
   </v-container>
 
 </template>
