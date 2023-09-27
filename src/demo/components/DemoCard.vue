@@ -1,5 +1,5 @@
 <template>
-  <v-col d-inline-flex ma-3>
+  <v-col class="d-inline-flex ma-3">
     <v-card width="500">
       <v-card-title>
         <h2>${{ type }}( message )</h2>
@@ -8,7 +8,7 @@
         <v-responsive>
           <p>{{ description }}</p>
           <p><code>${{ type }}( message )<span v-if="isPromise">.then( result => handler )</span></code></p>
-          <v-textarea outlined auto-grow v-model="text" label="Message (text)"></v-textarea>
+          <v-textarea variant="outlined" auto-grow v-model="text" label="Message (text)"></v-textarea>
         </v-responsive>
       </v-card-text>
       <v-card-actions>
@@ -88,8 +88,8 @@ export default {
           closeText : this.defaults.closeText,
           snackbarX : this.defaults.snackbarX,
           snackbarY : this.defaults.snackbarY,
-          color : this.defaults.color,
-          href : this.defaults.href
+          href : this.defaults.href,
+          color : this.defaults.color
         } );
       }
     }
