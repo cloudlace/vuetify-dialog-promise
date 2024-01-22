@@ -1,21 +1,47 @@
 <template>
-  <v-dialog v-model="shown"
-            :max-width="message.dialogMaxWidth || 500"
-            persistent>
+  <v-dialog 
+    v-model="shown"     
+    :max-width="message.dialogMaxWidth || 500"        
+    persistent>
     <v-card>
       <v-responsive>
+
         <v-card-title v-if="message.title">
           <h3>{{ message.title }}</h3>
         </v-card-title>
+
         <v-card-text>
-          <div class="vdp-message text--black">{{ message.text }}</div>
-          <v-text-field ref="prompt" v-if="type === 'prompt'" :type="message.type || 'text'" v-model="user_input" @keydown="checkSubmit" @focus="$event.target.select()"></v-text-field>
+          <div class="vdp-message text--black">
+            {{ message.text }}
+          </div>
+
+          <v-text-field 
+          v-if="type === 'prompt'" 
+          ref="prompt"
+          :type="message.type || 'text'" 
+          v-model="user_input" 
+          @keydown="checkSubmit" 
+          @focus="$event.target.select()"/>
         </v-card-text>
+
         <v-card-actions>
-          <v-btn v-on:click="cancel" v-if="type !== 'alert'">{{ message.cancelText }}</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn v-on:click="accept" color="primary">{{ message.acceptText }}</v-btn>
+          <v-btn 
+          v-if="type !== 'alert'"
+          variant="elevated"
+          @click="cancel" >
+          {{ message.cancelText }}
+          </v-btn>
+
+          <v-spacer/>
+
+          <v-btn 
+            color="primary" 
+            variant="elevated"
+            @click="accept">
+            {{ message.acceptText }} 
+          </v-btn>
         </v-card-actions>
+
       </v-responsive>
     </v-card>
   </v-dialog>
